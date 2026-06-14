@@ -3,140 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المراجعة النهائية التفاعلية - الصف السابع RWS</title>
+    <title>منصة الأندلس التعليمية التفاعلية - الصف السابع RWS</title>
     <style>
         :root {
-            --primary: #4a6fa5;
-            --secondary: #13c2c2;
-            --success: #52c41a;
-            --danger: #f5222d;
-            --bg: #f0f2f5;
+            --primary: #2c5282;
+            --secondary: #319795;
+            --success: #38a169;
+            --danger: #e53e3e;
+            --warning: #dd6b20;
+            --bg: #f7fafc;
             --card-bg: #ffffff;
+            --text-main: #2d3748;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
-            color: #333;
+            color: var(--text-main);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
+            line-height: 1.6;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         header {
             text-align: center;
-            background: linear-gradient(135deg, var(--primary), #2a4d7c);
+            background: linear-gradient(135deg, var(--primary), #1a365d);
             color: white;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px 20px;
+            border-radius: 14px;
             margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header p { margin: 10px 0 0 0; opacity: 0.9; font-size: 1rem; }
+        
+        /* نظام التابات التفاعلي */
+        .tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: #edf2f7;
+            padding: 6px;
+            border-radius: 10px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            color: #4a5568;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .section-title {
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* الكروت والتنسيقات الداعمة للمتعلم المبتدئ */
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+            border-right: 5px solid var(--secondary);
+        }
+        .grammar-title {
             background-color: var(--primary);
             color: white;
             padding: 10px 15px;
             border-radius: 6px;
-            margin-top: 30px;
+            margin-top: 35px;
+            font-size: 1.2rem;
         }
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-right: 5px solid var(--secondary);
-        }
-        .explanation {
-            background-color: #e6f7ff;
-            border-right: 5px solid #1890ff;
+        .explanation-box {
+            background-color: #ebf8ff;
+            border-right: 5px solid #3182ce;
             padding: 15px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            border-radius: 8px;
+            margin-bottom: 15px;
         }
-        .question {
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
+        .vocab-table th, .vocab-table td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: right;
+        }
+        .vocab-table th {
+            background-color: #edf2f7;
+            color: var(--primary);
+        }
+        .question-text {
             font-weight: bold;
             margin-bottom: 15px;
-            color: #222;
+            font-size: 1.05rem;
+            direction: ltr;
+            text-align: left;
         }
-        .options {
+        .options-list {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 10px;
+            gap: 12px;
         }
         @media(min-width: 600px) {
-            .options { grid-template-columns: 1fr 1fr; }
+            .options-list { grid-template-columns: 1fr 1fr; }
         }
-        .option-label {
-            background: #fafafa;
-            border: 1px solid #d9d9d9;
-            padding: 12px;
-            border-radius: 6px;
+        .option-item {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 14px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
+            direction: ltr;
         }
-        .option-label:hover {
-            background: #f0f5ff;
-            border-color: #adc6ff;
+        .option-item:hover {
+            background: #e6fffa;
+            border-color: var(--secondary);
         }
-        .option-label input {
-            margin-left: 10px;
+        .option-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
         }
-        .btn {
+        
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        .action-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 16px;
             font-size: 1.1rem;
-            border-radius: 6px;
+            font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
-            transition: background 0.3s;
-        }
-        .btn:hover { background: #2a4d7c; }
-        .btn-success { background: var(--success); }
-        .btn-success:hover { background: #389e0d; }
-        
-        #student-info {
-            margin-bottom: 20px;
-        }
-        #student-info input {
-            width: 100%;
-            padding: 12px;
-            box-sizing: border-box;
-            border: 1px solid #d9d9d9;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        #result-box {
-            display: none;
-            background: #f6ffed;
-            border: 2px solid #b7eb8f;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 25px;
-            text-align: center;
-        }
-        .wrong-answer {
-            background-color: #fff1f0 !important;
-            border-color: #ffa39e !important;
-        }
-        .correct-answer {
-            background-color: #f6ffed !important;
-            border-color: #b7eb8f !important;
-        }
-        .report-text {
-            text-align: right;
             margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .action-btn:hover { background: #1a365d; }
+        
+        /* تلوين نتائج التصحيح التفاعلي */
+        .card.correct-style {
+            background-color: #f0fff4 !important;
+            border-right-color: var(--success) !important;
+        }
+        .card.wrong-style {
+            background-color: #fff5f5 !important;
+            border-right-color: var(--danger) !important;
+        }
+        .result-panel {
+            display: none;
             background: #fff;
+            border: 2px solid var(--success);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .error-log {
+            background: #f7fafc;
             padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #d9d9d9;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-top: 15px;
+            text-align: right;
         }
     </style>
 </head>
@@ -144,197 +202,304 @@
 
 <div class="container">
     <header>
-        <h1>مدارس الأندلس الأهلية - القسم الثانوي/المتوسط بنات</h1>
-        <p>الاختبار التفاعلي الشامل والمراجعة النهائية - الصف السابع (RWS)</p>
+        <h1>مدارس الأندلس الأهلية (بنات)</h1>
+        <p>المنصة التفاعلية الشاملة للاستعداد للاختبار النهائي - الصف السابع RWS</p>
     </header>
 
-    <!-- بيانات الطالبة -->
-    <div class="card" id="student-info">
-        <label style="font-weight: bold; display: block; margin-bottom: 8px;">الرجاء إدخال اسم الطالبة قبل البدء:</label>
-        <input type="text" id="student-name" placeholder="اكتبي اسمكِ الثلاثي هنا..." required>
+    <!-- إدخال الاسم قبل البدء -->
+    <div class="card" style="border-right-color: var(--warning);">
+        <label style="font-weight: bold; display: block; margin-bottom: 8px;">الرجاء كتابة اسم الطالبة لتوثيق وحفظ النتائج:</label>
+        <input type="text" id="student-name" class="input-field" placeholder="اكتبي اسمكِ الكريم هنا...">
     </div>
 
-    <form id="quiz-form">
+    <!-- أزرار التنقل بين التابات -->
+    <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab(event, 'tab1')">📖 1. الشرح المفصل والأمثلة</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab2')">📝 2. الاختبار التجريبي الشامل</button>
+        <button class="tab-btn" onclick="switchTab(event, 'tab3')">🎯 3. الاختبار التأكيدي الإضافي</button>
+    </div>
 
-        <!-- القسم الأول -->
-        <h2 class="section-title">1. Reported Speech (الكلام المنقول)</h2>
-        <div class="card explanation">
-            <strong>الشرح السريع:</strong> عند نقل جملة خبرية، نرجع بالزمن خطوة للوراء (تحول am/is إلى was، وتحول will إلى would). إذا رأيتِ كلمة suggested نختار فوراً الفعل المضاف له ing.
+    <!-- TAB 1: الشرح والملخص المفصل -->
+    <div id="tab1" class="tab-content active">
+        <div class="card">
+            <h3>مرحباً بكِ في دليل المذاكرة الذكي! 😊</h3>
+            <p>هذا القسم يحتوي على شرح مبسط جداً لكل قاعدة ومفردة واردة في أوراق المراجعة النهائية لمساعدتكِ على الفهم والحفظ السريع.</p>
         </div>
 
-        <div class="card" id="q1-container">
-            <div class="question">س1: My mother said, 'I will cook dinner.' $\rightarrow$ My mother said that she ________ dinner.</div>
-            <div class="options">
-                <label class="option-label"><input type="radio" name="q1" value="a"> a) will cook</label>
-                <label class="option-label"><input type="radio" name="q1" value="b"> b) cooked</label>
-                <label class="option-label"><input type="radio" name="q1" value="c"> c) cooks</label>
-                <label class="option-label"><input type="radio" name="q1" value="d"> d) would cook</label>
+        <h3 class="grammar-title">1. Reported Speech (الكلام المنقول)</h3>
+        <div class="card">
+            <div class="explanation-box">
+                <strong>القاعدة الذهبية:</strong> نرجع بالزمن خطوة للوراء! تحول الجمل المضارعة إلى ماضي، والمستقبل المكتوب بـ (will) يتحول إلى (would).
             </div>
+            <strong>🔑 مفاتيح دلالية للاختبار (Exam Clues):</strong>
+            <ul>
+                <li>إذا رأيتِ <code>said that</code> ➔ اختاري فوراً زمن ماضي مثل (was / would).</li>
+                <li>إذا رأيتِ كلمة الاقتراح <code>suggested</code> ➔ اختاري الفعل المضاف له <code>ing</code> مباشرة.</li>
+            </ul>
         </div>
 
-        <div class="card" id="q2-container">
-            <div class="question">س2: 'Let's watch a movie.' $\rightarrow$ She suggested ________ a movie.</div>
-            <div class="options">
-                <label class="option-label"><input type="radio" name="q2" value="a"> a) watch</label>
-                <label class="option-label"><input type="radio" name="q2" value="b"> b) to watch</label>
-                <label class="option-label"><input type="radio" name="q2" value="c"> c) watching</label>
-                <label class="option-label"><input type="radio" name="q2" value="d"> d) will watch</label>
+        <h3 class="grammar-title">2. Modal Verbs of Speculation (أفعال التخمين)</h3>
+        <div class="card">
+            <div class="explanation-box">
+                نستخدم <strong>Must</strong> عندما نكون متأكدين بنسبة 90% أن الأمر صحيح. ونستخدم <strong>Can't</strong> عندما نكون متأكدين بنسبة 90% أن الأمر مستحيل. بينما نستخدم <strong>Might</strong> للعلامات المحتملة بنسبة 50%.
             </div>
+            <strong>🔑 مفاتيح دلالية للاختبار (Exam Clues):</strong>
+            <ul>
+                <li>رؤية عبارة <code>I'm not sure</code> (لست متأكداً) أو <code>I don't know</code> ➔ اختاري فوراً <strong>might</strong>.</li>
+            </ul>
         </div>
 
-        <!-- القسم الثاني -->
-        <h2 class="section-title">2. Modal Verbs of Speculation (أفعال التخمين)</h2>
-        <div class="card explanation">
-            <strong>الشرح السريع:</strong> نستخدم Must عندما نكون متأكدين بنسبة 90% من الصحة. نستخدم Can't عندما نكون متأكدين أن الشيء مستحيل. ونستخدم Might عند عدم التأكد (وجود كلمات مثل I'm not sure).
+        <h3 class="grammar-title">3. Spelling & Orthography (التهجئة الصحيحة للكلمات)</h3>
+        <div class="card">
+            <p>إليكِ جدولاً للكلمات الإملائية المهمة مع حيل ذكية لتذكر حروفها الصحيحة:</p>
+            <table class="vocab-table">
+                <thead>
+                    <tr>
+                        <th>الكلمة الصحيحة</th>
+                        <th>المعنى بالعربية</th>
+                        <th>حيلة الحفظ الذكية (Memory Trick)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>stationery</strong></td><td>أدوات مكتبية</td><td>تنتهي بحروف <strong>ery</strong> مثل كلمة pap<strong>er</strong> (ورق).</td></tr>
+                    <tr><td><strong>charity</strong></td><td>جمعية خيرية</td><td>تبدأ بكلمة <strong>chair</strong> (كرسي)، فالجمعيات تساعد الفقراء بتقديم الأثاث والكراسي.</td></tr>
+                    <tr><td><strong>chemist</strong></td><td>صيدلي / كيميائي</td><td>تبدأ بحرفي <strong>ch</strong> وتنتهي بـ <strong>ist</strong> مثل صانع الأسنان dentist.</td></tr>
+                    <tr><td><strong>bakery</strong></td><td>مخبز</td><td>مشتقة من كلمة <strong>bake</strong> (يخبز) ومضاف لها ry.</td></tr>
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <div class="card" id="q3-container">
-            <div class="question">س3: I'm not sure, but the bag ________ belong to Sara.</div>
-            <div class="options">
-                <label class="option-label"><input type="radio" name="q3" value="a"> a) might</label>
-                <label class="option-label"><input type="radio" name="q3" value="b"> b) must</label>
-                <label class="option-label"><input type="radio" name="q3" value="c"> c) can't</label>
-                <label class="option-label"><input type="radio" name="q3" value="d"> d) mustn't</label>
+    <!-- TAB 2: الاختبار التجريبي الشامل (جميع أسئلة الملف بدون حل مسبق) -->
+    <div id="tab2" class="tab-content">
+        <form id="quiz-form-main">
+            <!-- مجموعة أسئلة القواعد الواردة بالملف -->
+            <h3 class="grammar-title">أولاً: أسئلة القواعد العامة (Grammar)</h3>
+            
+            <div class="card" id="main-q1">
+                <div class="question-text">Q1: My mother said, 'I will cook dinner.' ➔ My mother said that she ________ dinner.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="mq1" value="a"> a) will cook</label>
+                    <label class="option-item"><input type="radio" name="mq1" value="b"> b) cooked</label>
+                    <label class="option-item"><input type="radio" name="mq1" value="c"> c) cooks</label>
+                    <label class="option-item"><input type="radio" name="mq1" value="d"> d) would cook</label>
+                </div>
             </div>
-        </div>
 
-        <div class="card" id="q4-container">
-            <div class="question">س4: The restaurant is closed. It ________ be open now.</div>
-            <div class="options">
-                <label class="option-label"><input type="radio" name="q4" value="a"> a) can't</label>
-                <label class="option-label"><input type="radio" name="q4" value="b"> b) might</label>
-                <label class="option-label"><input type="radio" name="q4" value="c"> c) must</label>
-                <label class="option-label"><input type="radio" name="q4" value="d"> d) can</label>
+            <div class="card" id="main-q2">
+                <div class="question-text">Q2: She said, 'When will you travel?' ➔ She asked me when I ________ travel.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="mq2" value="a"> a) will</label>
+                    <label class="option-item"><input type="radio" name="mq2" value="b"> b) can</label>
+                    <label class="option-item"><input type="radio" name="mq2" value="c"> c) would</label>
+                    <label class="option-item"><input type="radio" name="mq2" value="d"> d) could</label>
+                </div>
             </div>
-        </div>
 
-        <!-- القسم الثالث -->
-        <h2 class="section-title">3. Third Conditional & Quantifiers (الحالة الشرطية الثالثة والمحددات)</h2>
-        <div class="card explanation">
-            <strong>الشرح السريع:</strong> تركيب الحالة الشرطية الثالثة دائماً يتضمن (If + had + V3 , would have + V3). نستخدم any في الجمل المنفية التي تحتوي على (not / n't).
-        </div>
-
-        <div class="card" id="q5-container">
-            <div class="question">س5: The team would have won if they ________ played better.</div>
-            <div class="options">
-                <label class="option-label"><input type="radio" name="q5" value="a"> a) would</label>
-                <label class="option-label"><input type="radio" name="q5" value="b"> b) has</label>
-                <label class="option-label"><input type="radio" name="q5" value="c"> c) had</label>
-                <label class="option-label"><input type="radio" name="q5" value="d"> d) was</label>
+            <div class="card" id="main-q3">
+                <div class="question-text">Q3: 'Let's watch a movie.' ➔ She suggested ________ a movie.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="mq3" value="a"> a) watch</label>
+                    <label class="option-item"><input type="radio" name="mq3" value="b"> b) to watch</label>
+                    <label class="option-item"><input type="radio" name="mq3" value="c"> c) watching</label>
+                    <label class="option-item"><input type="radio" name="mq3" value="d"> d) will watch</label>
+                </div>
             </div>
-        </div>
 
-        <div class="card" id="q6-container">
-            <div class="question">س6: I can't see ________ thing on the teacher's desk.</div>
-            <div class="options">
-                <label class="option-label"><input type="radio" name="q6" value="a"> a) any</label>
-                <label class="option-label"><input type="radio" name="q6" value="b"> b) every</label>
-                <label class="option-label"><input type="radio" name="q6" value="c"> c) no</label>
-                <label class="option-label"><input type="radio" name="q6" value="d"> d) some</label>
+            <div class="card" id="main-q4">
+                <div class="question-text">Q4: I'm not sure, but the bag ________ belong to Sara.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="mq4" value="a"> a) might</label>
+                    <label class="option-item"><input type="radio" name="mq4" value="b"> b) must</label>
+                    <label class="option-item"><input type="radio" name="mq4" value="c"> c) can't</label>
+                    <label class="option-item"><input type="radio" name="mq4" value="d"> d) mustn't</label>
+                </div>
             </div>
+
+            <div class="card" id="main-q5">
+                <div class="question-text">Q5: The team would have won if they ________ played better.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="mq5" value="a"> a) would</label>
+                    <label class="option-item"><input type="radio" name="mq5" value="b"> b) has</label>
+                    <label class="option-item"><input type="radio" name="mq5" value="c"> c) had</label>
+                    <label class="option-item"><input type="radio" name="mq5" value="d"> d) was</label>
+                </div>
+            </div>
+
+            <h3 class="grammar-title">ثانياً: أسئلة المفاداة والتهجئة الإملائية (Spelling & Vocab)</h3>
+
+            <div class="card" id="main-q6">
+                <div class="question-text">Q6: Choose the correct spelling for (أدوات مكتبية):</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="mq6" value="a"> a) staitionery</label>
+                    <label class="option-item"><input type="radio" name="mq6" value="b"> b) stationery</label>
+                    <label class="option-item"><input type="radio" name="mq6" value="c"> c) staetionery</label>
+                    <label class="option-item"><input type="radio" name="mq6" value="d"> d) staitioniry</label>
+                </div>
+            </div>
+
+            <button type="button" class="action-btn" onclick="evaluateQuiz('main')">إرسال وتصحيح الاختبار التجريبي</button>
+        </form>
+
+        <div id="main-result" class="result-panel">
+            <h3 style="color: var(--success);">تمت عملية التصحيح بنجاح!</h3>
+            <h4 id="main-score-label"></h4>
+            <div id="main-error-log" class="error-log"></div>
+            <button type="button" class="action-btn" style="background-color: var(--success);" onclick="downloadTxtReport('main')">⬇️ تحميل ملف النتيجة والتغذية الراجعة (TXT)</button>
         </div>
+    </div>
 
-        <!-- زر الإرسال -->
-        <button type="button" class="btn" onclick="checkAnswers()">تصحيح الاختبار وإظهار النتيجة فوراً</button>
-    </form>
+    <!-- TAB 3: الاختبار التأكيدي الإضافي (أسئلة محاكية لتعزيز الفهم والتمكين) -->
+    <div id="tab3" class="tab-content">
+        <form id="quiz-form-extra">
+            <h3 class="grammar-title">أسئلة تأكيدية إضافية ومحاكية للاختبار النهائي</h3>
 
-    <!-- صندوق النتيجة والتقرير -->
-    <div id="result-box">
-        <h2 style="color: #389e0d;">تم تصحيح الاختبار بنجاح!</h2>
-        <h3 id="score-text" style="font-size: 1.5rem; margin: 15px 0;"></h3>
-        <div id="error-report" class="report-text"></div>
-        <button type="button" class="btn btn-success" onclick="downloadResults()">⬇️ تحميل ملف النتيجة وتوثيق الأخطاء (TXT)</button>
+            <div class="card" id="extra-q1">
+                <div class="question-text">Q1: He said, 'I am happy.' ➔ He said that he ________ happy.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="eq1" value="a"> a) is</label>
+                    <label class="option-item"><input type="radio" name="eq1" value="b"> b) was</label>
+                    <label class="option-item"><input type="radio" name="eq1" value="c"> c) am</label>
+                    <label class="option-item"><input type="radio" name="eq1" value="d"> d) will</label>
+                </div>
+            </div>
+
+            <div class="card" id="extra-q2">
+                <div class="question-text">Q2: 'Let's study together.' ➔ Ahmad suggested ________ together.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="eq2" value="a"> a) studying</label>
+                    <label class="option-item"><input type="radio" name="eq2" value="b"> b) to study</label>
+                    <label class="option-item"><input type="radio" name="eq2" value="c"> c) study</label>
+                    <label class="option-item"><input type="radio" name="eq2" value="d"> d) studied</label>
+                </div>
+            </div>
+
+            <div class="card" id="extra-q3">
+                <div class="question-text">Q3: I don't know where Nora is. She ________ be in the library.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="eq3" value="a"> a) must</label>
+                    <label class="option-item"><input type="radio" name="eq3" value="b"> b) can't</label>
+                    <label class="option-item"><input type="radio" name="eq3" value="c"> c) might</label>
+                    <label class="option-item"><input type="radio" name="eq3" value="d"> d) is</label>
+                </div>
+            </div>
+
+            <div class="card" id="extra-q4">
+                <div class="question-text">Q4: We would have visited the museum if we ________ enough time.</div>
+                <div class="options-list">
+                    <label class="option-item"><input type="radio" name="eq4" value="a"> a) have</label>
+                    <label class="option-item"><input type="radio" name="eq4" value="b"> b) had</label>
+                    <label class="option-item"><input type="radio" name="eq4" value="c"> c) has</label>
+                    <label class="option-item"><input type="radio" name="eq4" value="d"> d) would have</label>
+                </div>
+            </div>
+
+            <button type="button" class="action-btn" style="background-color: var(--secondary);" onclick="evaluateQuiz('extra')">إرسال وتصحيح الاختبار التأكيدي</button>
+        </form>
+
+        <div id="extra-result" class="result-panel" style="border-color: var(--secondary);">
+            <h3 style="color: var(--secondary);">تم تصحيح الاختبار التأكيدي!</h3>
+            <h4 id="extra-score-label"></h4>
+            <div id="extra-error-log" class="error-log"></div>
+            <button type="button" class="action-btn" style="background-color: var(--secondary);" onclick="downloadTxtReport('extra')">⬇️ تحميل ملف نتيجة التمكين (TXT)</button>
+        </div>
     </div>
 </div>
 
 <script>
-    // الإجابات النموذجية الصحيحة للمراجعة
-    const correctAnswers = {
-        q1: "d",
-        q2: "c",
-        q3: "a",
-        q4: "a",
-        q5: "c",
-        q6: "a"
+    // مفاتيح حل الأسئلة النموذجية
+    const mainAnswers = { mq1: "d", mq2: "c", mq3: "c", mq4: "a", mq5: "c", mq6: "b" };
+    const extraAnswers = { eq1: "b", eq2: "a", eq3: "c", eq4: "b" };
+
+    const questionLabels = {
+        mq1: "Q1: My mother said... (Reported Speech)",
+        mq2: "Q2: When will you travel... (Reported Questions)",
+        mq3: "Q3: Let's watch a movie... (Suggestions)",
+        mq4: "Q4: I'm not sure... (Speculation)",
+        mq5: "Q5: The team would have won... (Third Conditional)",
+        mq6: "Q6: Correct spelling for stationery (Orthography)",
+        eq1: "Q1: He said, 'I am happy'... (Reported Speech)",
+        eq2: "Q2: Ahmad suggested... (Suggestions)",
+        eq3: "Q3: I don't know where Nora is... (Speculation)",
+        eq4: "Q4: We would have visited... (Third Conditional)"
     };
 
-    // نصوص الأسئلة لاستخدامها في تقرير تحميل الملف النصي
-    const questionTexts = {
-        q1: "My mother said, 'I will cook dinner.' (Reported Speech)",
-        q2: "'Let's watch a movie.' (Suggestions)",
-        q3: "I'm not sure, but the bag... (Speculation)",
-        q4: "The restaurant is closed. It... (Speculation)",
-        q5: "The team would have won if they... (Third Conditional)",
-        q6: "I can't see... thing on the desk. (Quantifiers)"
-    };
+    let reportData = { main: "", extra: "" };
+    let scoreData = { main: "", extra: "" };
 
-    let globalReportText = "";
-    let globalScore = "";
+    function switchTab(evt, tabId) {
+        let contents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < contents.length; i++) { contents[i].classList.remove("active"); }
+        let buttons = document.getElementsByClassName("tab-btn");
+        for (let i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
+        document.getElementById(tabId).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
 
-    function checkAnswers() {
+    function evaluateQuiz(type) {
         const studentName = document.getElementById("student-name").value.trim();
         if (!studentName) {
-            alert("فضلاً، يرجى إدخال اسم الطالبة أولاً في أعلى الصفحة لتوثيق النتيجة!");
+            alert("فضلاً، يجب كتابة اسم الطالبة في الحقل المخصص بالأعلى قبل إرسال وتصحيح الاختبار!");
             document.getElementById("student-name").focus();
             return;
         }
 
+        const answersList = type === 'main' ? mainAnswers : extraAnswers;
         let score = 0;
-        let totalQuestions = Object.keys(correctAnswers).length;
-        let errorReportHTML = "<strong>📋 تقرير تحليل الأخطاء والنقاط الدلالية المفقودة:</strong><br><br>";
-        globalReportText = `تقرير نتيجة الطالبة: ${studentName}\nتاريخ التقييم: ${new Date().toLocaleDateString('ar-SA')}\n\n`;
+        let total = Object.keys(answersList).length;
+        let logHTML = "<strong>📋 مراجعة الأخطاء والتحليل الفوري للإجابات:</strong><br><br>";
+        reportData[type] = `نوع التقييم: ${type === 'main' ? 'الاختبار التجريبي الشامل' : 'الاختبار التأكيدي الإضافي'}\n\n`;
 
-        for (let key in correctAnswers) {
-            const container = document.getElementById(`${key}-container`);
-            const selected = document.querySelector(`input[name="${key}"]:checked`);
+        for (let id in answersList) {
+            const card = document.getElementById(`${type}-${id.substring(1)}`);
+            const selected = document.querySelector(`input[name="${id}"]:checked`);
             
-            // إعادة ضبط المظهر الافتراضي قبل إعادة التلوين
-            container.classList.remove("correct-answer", "wrong-answer");
+            card.classList.remove("correct-style", "wrong-style");
 
-            if (selected && selected.value === correctAnswers[key]) {
+            if (selected && selected.value === answersList[id]) {
                 score++;
-                container.classList.add("correct-answer");
+                card.classList.add("correct-style");
             } else {
-                container.classList.add("wrong-answer");
-                let studentSelection = selected ? selected.value.toUpperCase() : "لم يتم الإجابة";
-                errorReportHTML += `❌ في السؤال <strong>(${key.replace('q', '')})</strong>: إجابتك هي (${studentSelection}). الإجابة الصحيحة هي <strong>(${correctAnswers[key].toUpperCase()})</strong>.<br>`;
-                globalReportText += `❌ خطأ في سؤال: ${questionTexts[key]}\n   - إجابة الطالبة: (${studentSelection})\n   - الإجابة الصحيحة: (${correctAnswers[key].toUpperCase()})\n\n`;
+                card.classList.add("wrong-style");
+                let choice = selected ? selected.value.toUpperCase() : "لم يتم الاختيار";
+                let correctStr = answersList[id].toUpperCase();
+                logHTML += `❌ في السؤال <strong>(${id.substring(2)})</strong>: إجابتكِ هي (${choice}). الحل الصحيح والنموذجي هو <strong>(${correctStr})</strong>.<br>`;
+                reportData[type] += `❌ خطأ في: ${questionLabels[id]}\n   - إجابة الطالبة المعطاة: (${choice})\n   - الحل الصحيح: (${correctStr})\n\n`;
             }
         }
 
-        if (score === totalQuestions) {
-            errorReportHTML += "✨ ممتَاز ومبدعة! لقد أجبتِ على جميع الأسئلة بطريقة صحيحة ودون أي أخطاء. استمري في هذا التفوق!";
-            globalReportText += "✨ ممتاز! درجة كاملة وإجابات نموذجية خالية من الأخطاء.\n";
+        if (score === total) {
+            logHTML += "✨ مذهلة! إجابات مثالية وعلامة كاملة، أنتِ مستعدة تماماً للاختبار النهائي!";
+            reportData[type] += "✨ علامة كاملة وأداء ممتاز خالي تماماً من الأخطاء العشوائية.\n";
         }
 
-        globalScore = `النتيجة: ${score} من أصل ${totalQuestions} (${Math.round((score/totalQuestions)*100)}%)`;
+        scoreData[type] = `النتيجة النهائية للطالبة هي: ${score} من أصل ${total} (${Math.round((score/total)*100)}%)`;
         
-        // إظهار صندوق النتيجة وتحديثه
-        document.getElementById("score-text").innerText = `الطالبة: ${studentName} | ${globalScore}`;
-        document.getElementById("error-report").innerHTML = errorReportHTML;
-        document.getElementById("result-box").style.display = "block";
+        document.getElementById(`${type}-score-label`).innerText = `${studentName} | ${scoreData[type]}`;
+        document.getElementById(`${type}-error-log`).innerHTML = logHTML;
         
-        // الانتقال التلقائي لأسفل لمشاهدة النتيجة
-        document.getElementById("result-box").scrollIntoView({ behavior: 'smooth' });
+        const resultPanel = document.getElementById(`${type}-result`);
+        resultPanel.style.display = "block";
+        resultPanel.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function downloadResults() {
+    function downloadTxtReport(type) {
         const studentName = document.getElementById("student-name").value.trim();
-        let finalFileContent = `=======================================\n`;
-        finalFileContent += `       ملف توثيق تقييم اختبار الـ RWS       \n`;
-        finalFileContent += `=======================================\n\n`;
-        finalFileContent += `اسم الطالبة: ${studentName}\n`;
-        finalFileContent += `${globalScore}\n`;
-        finalFileContent += `---------------------------------------\n\n`;
-        finalFileContent += globalReportText;
-        finalFileContent += `\n=======================================\n`;
-        finalFileContent += `مع تمنياتنا لكِ بالنجاح الدائم - مدارس الأندلس\n`;
+        let fileText = `=======================================\n`;
+        fileText += `         تقرير منصة مدارس الأندلس التفاعلية        \n`;
+        fileText += `=======================================\n\n`;
+        fileText += `اسم الطالبة الثلاثي: ${studentName}\n`;
+        fileText += `${scoreData[type]}\n`;
+        fileText += `تاريخ التقييم الحركي: ${new Date().toLocaleDateString('ar-SA')}\n`;
+        fileText += `---------------------------------------\n\n`;
+        fileText += reportData[type];
+        fileText += `\n=======================================\n`;
+        fileText += `مع تمنياتنا لكِ بالتوفيق والنجاح الدائم.\n`;
 
-        // دالة إنشاء وتحميل الملف النصي عن طريق المتصفح مباشرة للكمبيوتر والهاتف
-        const blob = new Blob([finalFileContent], { type: "text/plain;charset=utf-8" });
+        const blob = new Blob([fileText], { type: "text/plain;charset=utf-8" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = `نتيجة_الاختبار_${studentName.replace(/\s+/g, '_')}.txt`;
+        link.download = `نتيجة_${type === 'main' ? 'التجريبي' : 'التأكيدي'}_${studentName.replace(/\s+/g, '_')}.txt`;
         link.click();
     }
 </script>
