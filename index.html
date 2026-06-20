@@ -3,619 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الأندلس الذكية التفاعلية - الصف الاول متوسط RWS</title>
+    <title>منصة الرياضيات التفاعلية | مدارس الأندلس</title>
     <style>
         :root {
-            --primary: #1a365d;
-            --secondary: #2b6cb0;
-            --success: #2f855a;
-            --danger: #c53030;
-            --warning: #c05621;
-            --bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text-main: #2d3748;
+            --primary-color: #2b6cb0;
+            --secondary-color: #319795;
+            --bg-color: #f7fafc;
+            --correct-color: #c6f6d5;
+            --correct-border: #38a169;
+            --wrong-color: #fed7d7;
+            --wrong-border: #e53e3e;
+            --tip-bg: #feebc8;
+            --tip-color: #dd6b20;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            background-color: var(--bg-color);
             margin: 0;
-            padding: 15px;
-            line-height: 1.6;
+            padding: 20px;
+            color: #2d3748;
         }
-        .container { max-width: 900px; margin: 0 auto; }
-        header {
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
             text-align: center;
-            background: linear-gradient(135deg, var(--primary), #2b6cb0);
-            color: white;
-            padding: 30px 20px;
-            border-radius: 14px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            color: var(--primary-color);
         }
-        header h1 { margin: 0; font-size: 1.8rem; }
-        header p { margin: 10px 0 0 0; opacity: 0.9; font-size: 1rem; }
-        .tabs-nav { display: flex; gap: 10px; margin-bottom: 25px; background: #edf2f7; padding: 6px; border-radius: 10px; }
-        .tab-btn { flex: 1; padding: 12px; font-size: 0.95rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; background: transparent; color: #4a5568; text-align: center; transition: all 0.2s; }
-        .tab-btn.active { background: var(--secondary); color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .card { background: var(--card-bg); border-radius: 10px; padding: 22px; margin-bottom: 22px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-right: 5px solid var(--secondary); }
-        .grammar-title { background-color: var(--primary); color: white; padding: 10px 15px; border-radius: 6px; margin-top: 35px; font-size: 1.2rem; }
-        .explanation-box { background-color: #ebf8ff; border-right: 5px solid #3182ce; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .vocab-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
-        .vocab-table th, .vocab-table td { border: 1px solid #e2e8f0; padding: 10px; text-align: right; }
-        .vocab-table th { background-color: #edf2f7; color: var(--primary); }
-        .question-text { font-weight: bold; margin-bottom: 15px; font-size: 1.05rem; direction: ltr; text-align: left; color: #1a202c; }
-        .options-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
-        @media(min-width: 600px) { .options-list { grid-template-columns: 1fr 1fr; } }
-        .option-item { background: #f7fafc; border: 1px solid #e2e8f0; padding: 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; direction: ltr; transition: background 0.2s; }
-        .option-item:hover { background: #edf2f7; }
-        .option-item input { margin-right: 12px; transform: scale(1.2); }
-        .input-field { width: 100%; padding: 14px; border: 1px solid #cbd5e0; border-radius: 8px; font-size: 1rem; box-sizing: border-box; }
-        .action-btn { background: var(--secondary); color: white; border: none; padding: 16px; font-size: 1.1rem; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 15px; transition: background 0.2s; }
-        .action-btn:hover { background: var(--primary); }
-        .card.correct-style { background-color: #f0fff4 !important; border-right-color: var(--success) !important; }
-        .card.wrong-style { background-color: #fff5f5 !important; border-right-color: var(--danger) !important; }
-        .result-panel { display: none; background: #fff; border: 2px solid var(--success); padding: 25px; border-radius: 12px; margin-top: 25px; }
-        .error-log { background: #f7fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin-top: 15px; text-align: right; }
-        .ai-tip { background-color: #fffaf0; border-left: 4px solid var(--warning); padding: 10px; margin-top: 8px; border-radius: 6px; font-size: 0.9rem; color: #7b341e; }
-        .badge { background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-size: 0.85rem; margin-right: 5px; color: var(--primary); font-weight: bold; }
+        .student-info {
+            background: #edf2f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        .student-info input {
+            width: 95%;
+            padding: 10px;
+            border: 2px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .question-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+        }
+        .options-list li {
+            margin-bottom: 10px;
+        }
+        .options-list label {
+            display: block;
+            padding: 10px 15px;
+            background: #f7fafc;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .options-list input {
+            margin-left: 10px;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-submit:hover {
+            background: #2c5282;
+        }
+        /* الأنماط الحركية الذكية للتصحيح */
+        .correct-style {
+            background-color: var(--correct-color);
+            border-color: var(--correct-border);
+        }
+        .wrong-style {
+            background-color: var(--wrong-color);
+            border-color: var(--wrong-border);
+        }
+        .ai-tip {
+            background-color: var(--tip-bg);
+            border-right: 4px solid var(--tip-color);
+            color: #7b341e;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .result-panel {
+            display: none;
+            background: #ebf8ff;
+            border: 2px solid #bee3f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>مدارس الأندلس الأهلية (اريج حكمي)</h1>
-        <p>المنصة الذكية للمراجعة النهائية مدعومة بموجه الأخطاء الذكي الافتراضي - الصف الاول متوسط RWS</p>
-    </header>
+    <h1>📝 منصة التقييم الذكي للرياضيات</h1>
+    <h2>اختبار الفصل الخامس والتاسع (تجريبي)</h2>
 
-    <div class="card" style="border-right-color: var(--warning);">
-        <label style="font-weight: bold; display: block; margin-bottom: 8px;">الرجاء كتابةالاسم لبدء وحفظ التقييم:</label>
-        <input type="text" id="student-name" class="input-field" placeholder="اكتبي اسمكِ هنا...">
+    <div class="student-info">
+        <label style="font-weight:bold; display:block; margin-bottom:8px;">اسم الطالبة المتميزة:</label>
+        <input type="text" id="student-name" placeholder="اكتبي اسمكِ الثلاثي هنا...">
     </div>
 
-    <div class="tabs-nav">
-        <button class="tab-btn active" onclick="switchTab(event, 'tab1')">📖 1. الشرح والمفاهيم</button>
-        <button class="tab-btn" onclick="switchTab(event, 'tab2')">📝 2. الاختبار التجريبي (38 سؤال)</button>
-        <button class="tab-btn" onclick="switchTab(event, 'tab3')">🎯 3. الاختبار التأكيدي (38 سؤال)</button>
-    </div>
-
-    <!-- TAB 1: الشرح التفصيلي والمترجم -->
-    <div id="tab1" class="tab-content active">
-        <div class="card">
-            <h3>مرحباً بكِ في دليل التفوق الشامل! 🌟</h3>
-            <p>هذا القسم مصمم ليغطي كل قاعدة ومفردة وكلمة إملائية واردة في منهجكِ بشرح مبسط جداً ومترجم لدعم التحصيل الدراسي.</p>
+    <div id="quiz-wrapper">
+        <div class="question-card" id="card-q1">
+            <div class="question-text">س١: مساحة المثلث الذي طول قاعدته ١٤ سم وارتفاعه ١٢ سم تساوي:</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q1" value="a"> أ) ٨٤ سم²</label></li>
+                <li><label><input type="radio" name="q1" value="b"> ب) ٤٢ سم²</label></li>
+                <li><label><input type="radio" name="q1" value="c"> ج) ٤٠ سم²</label></li>
+            </ul>
         </div>
 
-        <h3 class="grammar-title">1. الكلام المنقول والأسئلة المنقولة (Reported Speech)</h3>
-        <div class="card">
-            <div class="explanation-box">
-                <strong>الجمل الخبرية:</strong> عند نقل كلام شخص آخر، نغير الضمائر ونرجع بالزمن خطوة للوراء لتصبح الجملة في الماضي (المضارع يصبح ماضي، والمستقبل بـ <code>will</code> يصبح <code>would</code>).
-            </div>
-            <div class="explanation-box" style="background-color: #f7fafc; border-right-color: var(--secondary);">
-                <strong>الاقتراحات والطلبات:</strong> عند رؤية جمل تبدأ بـ <code>Let's</code> يُستخدم الفعل <code>suggested</code> ويأتي بعده مباشرة الفعل مضافاً له <code>-ing</code>. للطلبات المهذبة والأوامر نستخدم <code>asked + to + الفعل المجرد</code>.
-            </div>
+        <div class="question-card" id="card-q2">
+            <div class="question-text">س٢: مقدار الزكاة التي دفعها محمد هي ٤٥٠ ريالاً، كم كان رصيده الإجمالي وقت دفعها؟ (نسبة الزكاة ٢.٥٪)</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q2" value="a"> أ) ١١,٢٥٠ ريالاً</label></li>
+                <li><label><input type="radio" name="q2" value="b"> ب) ١٨,٠٠٠ ريالاً</label></li>
+                <li><label><input type="radio" name="q2" value="c"> ج) ٤٤,٠٠٠ ريالاً</label></li>
+            </ul>
         </div>
 
-        <h3 class="grammar-title">2. أفعال التخمين والاحتمالية (Modal Verbs of Speculation)</h3>
-        <div class="card">
-            <p>نستخدم أفعالاً مساعدة مخصصة للتعبير عن مدى ثقتنا في استنتاج شيء ما في الوقت الحاضر:</p>
-            <table class="vocab-table">
-                <thead>
-                    <tr><th>الفعل</th><th>المعنى والاستخدام</th><th>العلامة السحرية في السؤال (Exam Clue)</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>Must</strong></td><td>لا بد أنه.. (متأكد بنسبة 90% أن الأمر صحيح)</td><td>وجود دليل قوي أو إثبات (مثل: يرتدي الزي المدرسي).</td></tr>
-                    <tr><td><strong>Can't</strong></td><td>لا يمكن أن يكون.. (متأكد بنسبة 90% أنه مستحيل)</td><td>وجود دليل يثبت العكس تماماً (مثل: المحل مغلق الآن).</td></tr>
-                    <tr><td><strong>Might / May</strong></td><td>ربما.. (احتمال بنسبة 50% ولست متأكداً)</td><td>رؤية كلمات صريحة مثل <code>I'm not sure</code> أو <code>I don't know</code>.</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h3 class="grammar-title">3. الحالة الشرطية الثالثة (Third Conditional)</h3>
-        <div class="card">
-            <div class="explanation-box">
-                تستخدم للتعبير عن مواقف تخيلية أو ندم في الماضي لو حدثت لتغيرت النتيجة تماماً.
-                <br><strong>قاعدتها الثابتة:</strong> <span style="direction: ltr; display: inline-block;">If + had + V3 ➔ would have + V3</span>
-            </div>
+        <div class="question-card" id="card-q3">
+            <div class="question-text">س٣: لدى مها ٦٠ كتاباً، من بينها ٢٤ كتاباً علمياً. ما النسبة المئوية للكتب العلمية؟</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q3" value="a"> أ) ٢٠٪</label></li>
+                <li><label><input type="radio" name="q3" value="b"> ب) ٣٠٪</label></li>
+                <li><label><input type="radio" name="q3" value="c"> ج) ٤٠٪</label></li>
+            </ul>
         </div>
     </div>
 
-    <!-- TAB 2: الاختبار التجريبي الشامل (38 سؤالاً) -->
-    <div id="tab2" class="tab-content">
-        <form id="quiz-form-main">
-            <h3 class="grammar-title">أولاً: أسئلة القواعد النحوية (Grammar 1-32)</h3>
-            
-            <div class="card" id="main-q1"><div class="question-text"><span class="badge">Q1</span> My mother said, 'I will cook dinner.' ➔ My mother said that she ________ dinner.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq1" value="a"> a) will cook</label><label class="option-item"><input type="radio" name="mq1" value="b"> b) cooked</label><label class="option-item"><input type="radio" name="mq1" value="c"> c) cooks</label><label class="option-item"><input type="radio" name="mq1" value="d"> d) would cook</label>
-                </div></div>
-            <div class="card" id="main-q2"><div class="question-text"><span class="badge">Q2</span> She said, 'When will you travel?' ➔ She asked me when I ________ travel.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq2" value="a"> a) will</label><label class="option-item"><input type="radio" name="mq2" value="b"> b) can</label><label class="option-item"><input type="radio" name="mq2" value="c"> c) would</label><label class="option-item"><input type="radio" name="mq2" value="d"> d) could</label>
-                </div></div>
-            <div class="card" id="main-q3"><div class="question-text"><span class="badge">Q3</span> 'Please send me the photos.' ➔ She asked them ________ her the photos.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq3" value="a"> a) send</label><label class="option-item"><input type="radio" name="mq3" value="b"> b) sending</label><label class="option-item"><input type="radio" name="mq3" value="c"> c) to send</label><label class="option-item"><input type="radio" name="mq3" value="d"> d) to sending</label>
-                </div></div>
-            <div class="card" id="main-q4"><div class="question-text"><span class="badge">Q4</span> 'Let's watch a movie.' ➔ She suggested ________ a movie.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq4" value="a"> a) watch</label><label class="option-item"><input type="radio" name="mq4" value="b"> b) to watch</label><label class="option-item"><input type="radio" name="mq4" value="c"> c) watching</label><label class="option-item"><input type="radio" name="mq4" value="d"> d) will watch</label>
-                </div></div>
-            <div class="card" id="main-q5"><div class="question-text"><span class="badge">Q5</span> 'Let's study together.' ➔ He suggested ________ together.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq5" value="a"> a) studying</label><label class="option-item"><input type="radio" name="mq5" value="b"> b) to study</label><label class="option-item"><input type="radio" name="mq5" value="c"> c) study</label><label class="option-item"><input type="radio" name="mq5" value="d"> d) will study</label>
-                </div></div>
-            <div class="card" id="main-q6"><div class="question-text"><span class="badge">Q6</span> 'Let's visit the museum' ➔ Sara suggested ________ the museum.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq6" value="a"> a) visit</label><label class="option-item"><input type="radio" name="mq6" value="b"> b) visiting</label><label class="option-item"><input type="radio" name="mq6" value="c"> c) to visit</label><label class="option-item"><input type="radio" name="mq6" value="d"> d) will visit</label>
-                </div></div>
-            <div class="card" id="main-q7"><div class="question-text"><span class="badge">Q7</span> He is at home. He ________ be at school.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq7" value="a"> a) must</label><label class="option-item"><input type="radio" name="mq7" value="b"> b) can't</label><label class="option-item"><input type="radio" name="mq7" value="c"> c) might</label><label class="option-item"><input type="radio" name="mq7" value="d"> d) should</label>
-                </div></div>
-            <div class="card" id="main-q8"><div class="question-text"><span class="badge">Q8</span> I'm not sure, but the bag ________ belong to Sara.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq8" value="a"> a) might</label><label class="option-item"><input type="radio" name="mq8" value="b"> b) must</label><label class="option-item"><input type="radio" name="mq8" value="c"> c) can't</label><label class="option-item"><input type="radio" name="mq8" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="main-q9"><div class="question-text"><span class="badge">Q9</span> I don't know where Reem is. She ________ be in the library.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq9" value="a"> a) must</label><label class="option-item"><input type="radio" name="mq9" value="b"> b) can't</label><label class="option-item"><input type="radio" name="mq9" value="c"> c) might</label><label class="option-item"><input type="radio" name="mq9" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="main-q10"><div class="question-text"><span class="badge">Q10</span> He is wearing a school uniform. He ________ be a student.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq10" value="a"> a) can't</label><label class="option-item"><input type="radio" name="mq10" value="b"> b) must</label><label class="option-item"><input type="radio" name="mq10" value="c"> c) might</label><label class="option-item"><input type="radio" name="mq10" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="main-q11"><div class="question-text"><span class="badge">Q11</span> The restaurant is closed. It ________ be open now.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq11" value="a"> a) can't</label><label class="option-item"><input type="radio" name="mq11" value="b"> b) must</label><label class="option-item"><input type="radio" name="mq11" value="c"> c) might</label><label class="option-item"><input type="radio" name="mq11" value="d"> d) should</label>
-                </div></div>
-            <div class="card" id="main-q12"><div class="question-text"><span class="badge">Q12</span> It ________ be summer because the weather is very cold.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq12" value="a"> a) must</label><label class="option-item"><input type="radio" name="mq12" value="b"> b) might</label><label class="option-item"><input type="radio" name="mq12" value="c"> c) could</label><label class="option-item"><input type="radio" name="mq12" value="d"> d) can't</label>
-                </div></div>
-            <div class="card" id="main-q13"><div class="question-text"><span class="badge">Q13</span> The team ________ won if they had played better.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq13" value="a"> a) will have</label><label class="option-item"><input type="radio" name="mq13" value="b"> b) would</label><label class="option-item"><input type="radio" name="mq13" value="c"> c) would have</label><label class="option-item"><input type="radio" name="mq13" value="d"> d) had</label>
-                </div></div>
-            <div class="card" id="main-q14"><div class="question-text"><span class="badge">Q14</span> We would have visited you if we ________ known your address.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq14" value="a"> a) had</label><label class="option-item"><input type="radio" name="mq14" value="b"> b) knew</label><label class="option-item"><input type="radio" name="mq14" value="c"> c) know</label><label class="option-item"><input type="radio" name="mq14" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="main-q15"><div class="question-text"><span class="badge">Q15</span> If Sara had saved enough money, she ________ have bought a new car.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq15" value="a"> a) will</label><label class="option-item"><input type="radio" name="mq15" value="b"> b) can</label><label class="option-item"><input type="radio" name="mq15" value="c"> c) may</label><label class="option-item"><input type="radio" name="mq15" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="main-q16"><div class="question-text"><span class="badge">Q16</span> She wouldn't have felt tired if she ________ slept early.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq16" value="a"> a) sleeps</label><label class="option-item"><input type="radio" name="mq16" value="b"> b) slept</label><label class="option-item"><input type="radio" name="mq16" value="c"> c) had</label><label class="option-item"><input type="radio" name="mq16" value="d"> d) has</label>
-                </div></div>
-            <div class="card" id="main-q17"><div class="question-text"><span class="badge">Q17</span> If she had finished her homework, she ________ have watched the movie.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq17" value="a"> a) will</label><label class="option-item"><input type="radio" name="mq17" value="b"> b) has</label><label class="option-item"><input type="radio" name="mq17" value="c"> c) must</label><label class="option-item"><input type="radio" name="mq17" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="main-q18"><div class="question-text"><span class="badge">Q18</span> She drinks a glass of milk ________ morning before school.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq18" value="a"> a) every</label><label class="option-item"><input type="radio" name="mq18" value="b"> b) some</label><label class="option-item"><input type="radio" name="mq18" value="c"> c) any</label><label class="option-item"><input type="radio" name="mq18" value="d"> d) no</label>
-                </div></div>
-            <div class="card" id="main-q19"><div class="question-text"><span class="badge">Q19</span> I didn't find ________ useful in my bag.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq19" value="a"> a) something</label><label class="option-item"><input type="radio" name="mq19" value="b"> b) nothing</label><label class="option-item"><input type="radio" name="mq19" value="c"> c) anything</label><label class="option-item"><input type="radio" name="mq19" value="d"> d) everything</label>
-                </div></div>
-            <div class="card" id="main-q20"><div class="question-text"><span class="badge">Q20</span> I can't see ________ thing on the teacher's desk.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq20" value="a"> a) any</label><label class="option-item"><input type="radio" name="mq20" value="b"> b) every</label><label class="option-item"><input type="radio" name="mq20" value="c"> c) no</label><label class="option-item"><input type="radio" name="mq20" value="d"> d) some</label>
-                </div></div>
-            <div class="card" id="main-q21"><div class="question-text"><span class="badge">Q21</span> We didn't go ________ after school yesterday.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq21" value="a"> a) somewhere</label><label class="option-item"><input type="radio" name="mq21" value="b"> b) nowhere</label><label class="option-item"><input type="radio" name="mq21" value="c"> c) anywhere</label><label class="option-item"><input type="radio" name="mq21" value="d"> d) everywhere</label>
-                </div></div>
-            <div class="card" id="main-q22"><div class="question-text"><span class="badge">Q22</span> She wanted to buy ________ nice for her friend.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq22" value="a"> a) anything</label><label class="option-item"><input type="radio" name="mq22" value="b"> b) nothing</label><label class="option-item"><input type="radio" name="mq22" value="c"> c) something</label><label class="option-item"><input type="radio" name="mq22" value="d"> d) any</label>
-                </div></div>
-            <div class="card" id="main-q23"><div class="question-text"><span class="badge">Q23</span> He ran ________ fast that he won the race.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq23" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq23" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq23" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq23" value="d"> d) too</label>
-                </div></div>
-            <div class="card" id="main-q24"><div class="question-text"><span class="badge">Q24</span> She is ________ a smart student.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq24" value="a"> a) such</label><label class="option-item"><input type="radio" name="mq24" value="b"> b) so</label><label class="option-item"><input type="radio" name="mq24" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq24" value="d"> d) identical</label>
-                </div></div>
-            <div class="card" id="main-q25"><div class="question-text"><span class="badge">Q25</span> She is ________ a talented actress that everyone clapped for her.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq25" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq25" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq25" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq25" value="d"> d) more</label>
-                </div></div>
-            <div class="card" id="main-q26"><div class="question-text"><span class="badge">Q26</span> The bag is ________ expensive that I can't buy it.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq26" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq26" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq26" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq26" value="d"> d) many</label>
-                </div></div>
-            <div class="card" id="main-q27"><div class="question-text"><span class="badge">Q27</span> It was ________ a cold day that we stayed at home.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq27" value="a"> a) such</label><label class="option-item"><input type="radio" name="mq27" value="b"> b) so</label><label class="option-item"><input type="radio" name="mq27" value="c"> c) many</label><label class="option-item"><input type="radio" name="mq27" value="d"> d) most</label>
-                </div></div>
-            <div class="card" id="main-q28"><div class="question-text"><span class="badge">Q28</span> The game was ________ exciting that we didn't want it to end.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq28" value="a"> a) so</label><label class="option-item"><input type="radio" name="mq28" value="b"> b) such</label><label class="option-item"><input type="radio" name="mq28" value="c"> c) very</label><label class="option-item"><input type="radio" name="mq28" value="d"> d) too</label>
-                </div></div>
-            <div class="card" id="main-q29"><div class="question-text"><span class="badge">Q29</span> If only I ________ enough money to buy this phone.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq29" value="a"> a) have</label><label class="option-item"><input type="radio" name="mq29" value="b"> b) had</label><label class="option-item"><input type="radio" name="mq29" value="c"> c) will have</label><label class="option-item"><input type="radio" name="mq29" value="d"> d) has</label>
-                </div></div>
-            <div class="card" id="main-q30"><div class="question-text"><span class="badge">Q30</span> I wish I ________ done my homework yesterday.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq30" value="a"> a) had</label><label class="option-item"><input type="radio" name="mq30" value="b"> b) did</label><label class="option-item"><input type="radio" name="mq30" value="c"> c) have</label><label class="option-item"><input type="radio" name="mq30" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="main-q31"><div class="question-text"><span class="badge">Q31</span> If only she ________ left earlier, she wouldn't have missed the bus.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq31" value="a"> a) has</label><label class="option-item"><input type="radio" name="mq31" value="b"> b) leaves</label><label class="option-item"><input type="radio" name="mq31" value="c"> c) had</label><label class="option-item"><input type="radio" name="mq31" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="main-q32"><div class="question-text"><span class="badge">Q32</span> If only I ________ checked my bag before leaving home.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq32" value="a"> a) had</label><label class="option-item"><input type="radio" name="mq32" value="b"> b) checked</label><label class="option-item"><input type="radio" name="mq32" value="c"> c) have</label><label class="option-item"><input type="radio" name="mq32" value="d"> d) did</label>
-                </div></div>
+    <button class="btn-submit" onclick="evaluateMathQuiz()">إرسال وتصحيح الاختبار</button>
 
-            <h3 class="grammar-title">ثانياً: أسئلة المفردات والكلمات (Vocabulary 33-35)</h3>
-            <div class="card" id="main-q33"><div class="question-text"><span class="badge">Q33</span> The students stood on the ________ to perform their beautiful show.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq33" value="a"> a) scene</label><label class="option-item"><input type="radio" name="mq33" value="b"> b) lighting</label><label class="option-item"><input type="radio" name="mq33" value="c"> c) stage</label><label class="option-item"><input type="radio" name="mq33" value="d"> d) character</label>
-                </div></div>
-            <div class="card" id="main-q34"><div class="question-text"><span class="badge">Q34</span> On National Day, citizens wave their country's ________ in the streets.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq34" value="a"> a) flag</label><label class="option-item"><input type="radio" name="mq34" value="b"> b) anthem</label><label class="option-item"><input type="radio" name="mq34" value="c"> c) currency</label><label class="option-item"><input type="radio" name="mq34" value="d"> d) language</label>
-                </div></div>
-            <div class="card" id="main-q35"><div class="question-text"><span class="badge">Q35</span> Many rich business people decide to ________ money to help poor families.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq35" value="a"> a) spend</label><label class="option-item"><input type="radio" name="mq35" value="b"> b) borrow</label><label class="option-item"><input type="radio" name="mq35" value="c"> c) waste</label><label class="option-item"><input type="radio" name="mq35" value="d"> d) donate</label>
-                </div></div>
-
-            <h3 class="grammar-title">ثالثاً: أسئلة التهجئة الصحيحة (Orthography 36-38)</h3>
-            <div class="card" id="main-q36"><div class="question-text"><span class="badge">Q36</span> Choose the correct spelling for (أدوات مكتبية):</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq36" value="a"> a) staitionery</label><label class="option-item"><input type="radio" name="mq36" value="b"> b) stationery</label><label class="option-item"><input type="radio" name="mq36" value="c"> c) stationary</label><label class="option-item"><input type="radio" name="mq36" value="d"> d) stationiry</label>
-                </div></div>
-            <div class="card" id="main-q37"><div class="question-text"><span class="badge">Q37</span> Choose the correct spelling for (جمعية خيرية):</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq37" value="a"> a) sharity</label><label class="option-item"><input type="radio" name="mq37" value="b"> b) charity</label><label class="option-item"><input type="radio" name="mq37" value="c"> c) tcharity</label><label class="option-item"><input type="radio" name="mq37" value="d"> d) charety</label>
-                </div></div>
-            <div class="card" id="main-q38"><div class="question-text"><span class="badge">Q38</span> Choose the correct spelling for (صيدلي / كيميائي):</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="mq38" value="a"> a) kemist</label><label class="option-item"><input type="radio" name="mq38" value="b"> b) chymist</label><label class="option-item"><input type="radio" name="mq38" value="c"> c) chemist</label><label class="option-item"><input type="radio" name="mq38" value="d"> d) cemist</label>
-                </div></div>
-
-            <button type="button" class="action-btn" onclick="evaluateQuiz('main')">إرسال وتصحيح الاختبار التجريبي</button>
-        </form>
-
-        <div id="main-result" class="result-panel">
-            <h3 style="color: var(--success);">تمت عملية التصحيح بنجاح!</h3>
-            <h4 id="main-score-label"></h4>
-            <div id="main-error-log" class="error-log"></div>
-            <button type="button" class="action-btn" style="background-color: var(--success);" onclick="downloadTxtReport('main')">⬇️ تحميل تقرير الأخطاء المعتمد (TXT)</button>
-        </div>
-    </div>
-
-    <!-- TAB 3: الاختبار التأكيدي (38 سؤالاً مماثلاً وموازياً تماماً) -->
-    <div id="tab3" class="tab-content">
-        <form id="quiz-form-extra">
-            <h3 class="grammar-title">أولاً: أسئلة القواعد التأكيدية الإضافية (1-32)</h3>
-            
-            <div class="card" id="extra-q1"><div class="question-text"><span class="badge">Q1</span> Nora said, 'I will clean the room.' ➔ Nora said that she ________ the room.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq1" value="a"> a) will clean</label><label class="option-item"><input type="radio" name="eq1" value="b"> b) cleaned</label><label class="option-item"><input type="radio" name="eq1" value="c"> c) cleans</label><label class="option-item"><input type="radio" name="eq1" value="d"> d) would clean</label>
-                </div></div>
-            <div class="card" id="extra-q2"><div class="question-text"><span class="badge">Q2</span> He said, 'When will you arrive?' ➔ He asked me when I ________ arrive.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq2" value="a"> a) will</label><label class="option-item"><input type="radio" name="eq2" value="b"> b) can</label><label class="option-item"><input type="radio" name="eq2" value="c"> c) would</label><label class="option-item"><input type="radio" name="eq2" value="d"> d) could</label>
-                </div></div>
-            <div class="card" id="extra-q3"><div class="question-text"><span class="badge">Q3</span> 'Please write the answer.' ➔ The teacher asked them ________ the answer.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq3" value="a"> a) write</label><label class="option-item"><input type="radio" name="eq3" value="b"> b) writing</label><label class="option-item"><input type="radio" name="eq3" value="c"> c) to write</label><label class="option-item"><input type="radio" name="eq3" value="d"> d) to writing</label>
-                </div></div>
-            <div class="card" id="extra-q4"><div class="question-text"><span class="badge">Q4</span> 'Let's buy a book.' ➔ Ahmad suggested ________ a book.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq4" value="a"> a) buy</label><label class="option-item"><input type="radio" name="eq4" value="b"> b) to buy</label><label class="option-item"><input type="radio" name="eq4" value="c"> c) buying</label><label class="option-item"><input type="radio" name="eq4" value="d"> d) will buy</label>
-                </div></div>
-            <div class="card" id="extra-q5"><div class="question-text"><span class="badge">Q5</span> 'Let's practice together.' ➔ She suggested ________ together.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq5" value="a"> a) practicing</label><label class="option-item"><input type="radio" name="eq5" value="b"> b) to practice</label><label class="option-item"><input type="radio" name="eq5" value="c"> c) practice</label><label class="option-item"><input type="radio" name="eq5" value="d"> d) will practice</label>
-                </div></div>
-            <div class="card" id="extra-q6"><div class="question-text"><span class="badge">Q6</span> 'Let's help the poor.' ➔ The leader suggested ________ the poor.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq6" value="a"> a) help</label><label class="option-item"><input type="radio" name="eq6" value="b"> b) helping</label><label class="option-item"><input type="radio" name="eq6" value="c"> c) to help</label><label class="option-item"><input type="radio" name="eq6" value="d"> d) will help</label>
-                </div></div>
-            <div class="card" id="extra-q7"><div class="question-text"><span class="badge">Q7</span> He is in London. He ________ be in Jeddah right now.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq7" value="a"> a) must</label><label class="option-item"><input type="radio" name="eq7" value="b"> b) can't</label><label class="option-item"><input type="radio" name="eq7" value="c"> c) might</label><label class="option-item"><input type="radio" name="eq7" value="d"> d) should</label>
-                </div></div>
-            <div class="card" id="extra-q8"><div class="question-text"><span class="badge">Q8</span> I don't know, but this phone ________ belong to Khalid.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq8" value="a"> a) might</label><label class="option-item"><input type="radio" name="eq8" value="b"> b) must</label><label class="option-item"><input type="radio" name="eq8" value="c"> c) can't</label><label class="option-item"><input type="radio" name="eq8" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="extra-q9"><div class="question-text"><span class="badge">Q9</span> I'm not sure where Hind is. She ________ be in the classroom.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq9" value="a"> a) must</label><label class="option-item"><input type="radio" name="eq9" value="b"> b) can't</label><label class="option-item"><input type="radio" name="eq9" value="c"> c) might</label><label class="option-item"><input type="radio" name="eq9" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="extra-q10"><div class="question-text"><span class="badge">Q10</span> He has three luxury cars. He ________ be very rich.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq10" value="a"> a) can't</label><label class="option-item"><input type="radio" name="eq10" value="b"> b) must</label><label class="option-item"><input type="radio" name="eq10" value="c"> c) might</label><label class="option-item"><input type="radio" name="eq10" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="extra-q11"><div class="question-text"><span class="badge">Q11</span> The light is off. They ________ be sleeping inside.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq11" value="a"> a) must</label><label class="option-item"><input type="radio" name="eq11" value="b"> b) can't</label><label class="option-item"><input type="radio" name="eq11" value="c"> c) might</label><label class="option-item"><input type="radio" name="eq11" value="d"> d) shouldn't</label>
-                </div></div>
-            <div class="card" id="extra-q12"><div class="question-text"><span class="badge">Q12</span> It ________ be snowing because the sun is very bright and hot.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq12" value="a"> a) must</label><label class="option-item"><input type="radio" name="eq12" value="b"> b) might</label><label class="option-item"><input type="radio" name="eq12" value="c"> c) could</label><label class="option-item"><input type="radio" name="eq12" value="d"> d) can't</label>
-                </div></div>
-            <div class="card" id="extra-q13"><div class="question-text"><span class="badge">Q13</span> The player ________ scored if he had run faster.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq13" value="a"> a) will have</label><label class="option-item"><input type="radio" name="eq13" value="b"> b) would</label><label class="option-item"><input type="radio" name="eq13" value="c"> c) would have</label><label class="option-item"><input type="radio" name="eq13" value="d"> d) had</label>
-                </div></div>
-            <div class="card" id="extra-q14"><div class="question-text"><span class="badge">Q14</span> We would have baked a cake if we ________ some sugar.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq14" value="a"> a) had had</label><label class="option-item"><input type="radio" name="eq14" value="b"> b) have</label><label class="option-item"><input type="radio" name="eq14" value="c"> c) has</label><label class="option-item"><input type="radio" name="eq14" value="d"> d) have had</label>
-                </div></div>
-            <div class="card" id="extra-q15"><div class="question-text"><span class="badge">Q15</span> If they had left early, they ________ have caught the plane.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq15" value="a"> a) will</label><label class="option-item"><input type="radio" name="eq15" value="b"> b) can</label><label class="option-item"><input type="radio" name="eq15" value="c"> c) may</label><label class="option-item"><input type="radio" name="eq15" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="extra-q16"><div class="question-text"><span class="badge">Q16</span> She wouldn't have failed if she ________ harder.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq16" value="a"> a) studies</label><label class="option-item"><input type="radio" name="eq16" value="b"> b) studied</label><label class="option-item"><input type="radio" name="eq16" value="c"> c) had studied</label><label class="option-item"><input type="radio" name="eq16" value="d"> has studied</label>
-                </div></div>
-            <div class="card" id="extra-q17"><div class="question-text"><span class="badge">Q17</span> If I had known the answer, I ________ have answered the question.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq17" value="a"> a) will</label><label class="option-item"><input type="radio" name="eq17" value="b"> b) could</label><label class="option-item"><input type="radio" name="eq17" value="c"> c) must</label><label class="option-item"><input type="radio" name="eq17" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="extra-q18"><div class="question-text"><span class="badge">Q18</span> He reads a new story ________ night before sleeping.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq18" value="a"> a) every</label><label class="option-item"><input type="radio" name="eq18" value="b"> b) some</label><label class="option-item"><input type="radio" name="eq18" value="c"> c) any</label><label class="option-item"><input type="radio" name="eq18" value="d"> d) no</label>
-                </div></div>
-            <div class="card" id="extra-q19"><div class="question-text"><span class="badge">Q19</span> They didn't see ________ strange in the yard.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq19" value="a"> a) something</label><label class="option-item"><input type="radio" name="eq19" value="b"> b) nothing</label><label class="option-item"><input type="radio" name="eq19" value="c"> c) anything</label><label class="option-item"><input type="radio" name="eq19" value="d"> d) everything</label>
-                </div></div>
-            <div class="card" id="extra-q20"><div class="question-text"><span class="badge">Q20</span> We can't hear ________ noise from the room next door.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq20" value="a"> a) any</label><label class="option-item"><input type="radio" name="eq20" value="b"> b) every</label><label class="option-item"><input type="radio" name="eq20" value="c"> c) no</label><label class="option-item"><input type="radio" name="eq20" value="d"> d) some</label>
-                </div></div>
-            <div class="card" id="extra-q21"><div class="question-text"><span class="badge">Q21</span> She didn't buy ________ from the market yesterday.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq21" value="a"> a) somewhere</label><label class="option-item"><input type="radio" name="eq21" value="b"> b) nowhere</label><label class="option-item"><input type="radio" name="eq21" value="c"> c) anywhere</label><label class="option-item"><input type="radio" name="eq21" value="d"> d) everywhere</label>
-                </div></div>
-            <div class="card" id="extra-q22"><div class="question-text"><span class="badge">Q22</span> I want to tell you ________ interesting about our trip.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq22" value="a"> a) anything</label><label class="option-item"><input type="radio" name="eq22" value="b"> b) nothing</label><label class="option-item"><input type="radio" name="eq22" value="c"> c) something</label><label class="option-item"><input type="radio" name="eq22" value="d"> d) any</label>
-                </div></div>
-            <div class="card" id="extra-q23"><div class="question-text"><span class="badge">Q23</span> The test was ________ difficult that nobody got a full mark.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq23" value="a"> a) so</label><label class="option-item"><input type="radio" name="eq23" value="b"> b) such</label><label class="option-item"><input type="radio" name="eq23" value="c"> c) very</label><label class="option-item"><input type="radio" name="eq23" value="d"> d) too</label>
-                </div></div>
-            <div class="card" id="extra-q24"><div class="question-text"><span class="badge">Q24</span> This is ________ an interesting storybook.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq24" value="a"> a) such</label><label class="option-item"><input type="radio" name="eq24" value="b"> b) so</label><label class="option-item"><input type="radio" name="eq24" value="c"> c) very</label><label class="option-item"><input type="radio" name="eq24" value="d"> d) most</label>
-                </div></div>
-            <div class="card" id="extra-q25"><div class="question-text"><span class="badge">Q25</span> It was ________ a heavy box that I couldn't lift it.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq25" value="a"> a) so</label><label class="option-item"><input type="radio" name="eq25" value="b"> b) such</label><label class="option-item"><input type="radio" name="eq25" value="c"> c) very</label><label class="option-item"><input type="radio" name="eq25" value="d"> d) more</label>
-                </div></div>
-            <div class="card" id="extra-q26"><div class="question-text"><span class="badge">Q26</span> The movie was ________ boring that I fell asleep.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq26" value="a"> a) so</label><label class="option-item"><input type="radio" name="eq26" value="b"> b) such</label><label class="option-item"><input type="radio" name="eq26" value="c"> c) very</label><label class="option-item"><input type="radio" name="eq26" value="d"> d) too</label>
-                </div></div>
-            <div class="card" id="extra-q27"><div class="question-text"><span class="badge">Q27</span> He is ________ a kind teacher that everyone likes him.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq27" value="a"> a) such</label><label class="option-item"><input type="radio" name="eq27" value="b"> b) so</label><label class="option-item"><input type="radio" name="eq27" value="c"> c) very</label><label class="option-item"><input type="radio" name="eq27" value="d"> d) most</label>
-                </div></div>
-            <div class="card" id="extra-q28"><div class="question-text"><span class="badge">Q28</span> The building is ________ tall that you can see it from far away.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq28" value="a"> a) so</label><label class="option-item"><input type="radio" name="eq28" value="b"> b) such</label><label class="option-item"><input type="radio" name="eq28" value="c"> c) very</label><label class="option-item"><input type="radio" name="eq28" value="d"> d) too</label>
-                </div></div>
-            <div class="card" id="extra-q29"><div class="question-text"><span class="badge">Q29</span> If only she ________ her keys, she wouldn't be locked out.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq29" value="a"> a) has</label><label class="option-item"><input type="radio" name="eq29" value="b"> b) had</label><label class="option-item"><input type="radio" name="eq29" value="c"> c) will have</label><label class="option-item"><input type="radio" name="eq29" value="d"> d) has had</label>
-                </div></div>
-            <div class="card" id="extra-q30"><div class="question-text"><span class="badge">Q30</span> I wish I ________ studied more before the final test last year.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq30" value="a"> a) had</label><label class="option-item"><input type="radio" name="eq30" value="b"> b) did</label><label class="option-item"><input type="radio" name="eq30" value="c"> c) have</label><label class="option-item"><input type="radio" name="eq30" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="extra-q31"><div class="question-text"><span class="badge">Q31</span> If only we ________ arrived early, we could meet the doctor.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq31" value="a"> a) has</label><label class="option-item"><input type="radio" name="eq31" value="b"> b) arrive</label><label class="option-item"><input type="radio" name="eq31" value="c"> c) had</label><label class="option-item"><input type="radio" name="eq31" value="d"> d) would</label>
-                </div></div>
-            <div class="card" id="extra-q32"><div class="question-text"><span class="badge">Q32</span> I wish I ________ locked the main door before going to bed.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq32" value="a"> a) had</label><label class="option-item"><input type="radio" name="eq32" value="b"> b) locked</label><label class="option-item"><input type="radio" name="eq32" value="c"> c) have</label><label class="option-item"><input type="radio" name="eq32" value="d"> d) did</label>
-                </div></div>
-
-            <h3 class="grammar-title">ثانياً: أسئلة المفردات التأكيدية الموازية (33-35)</h3>
-            <div class="card" id="extra-q33"><div class="question-text"><span class="badge">Q33</span> The actors stood on the ________ waiting for the curtains to open.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq33" value="a"> a) scene</label><label class="option-item"><input type="radio" name="eq33" value="b"> b) lighting</label><label class="option-item"><input type="radio" name="eq33" value="c"> c) stage</label><label class="option-item"><input type="radio" name="eq33" value="d"> d) musical</label>
-                </div></div>
-            <div class="card" id="extra-q34"><div class="question-text"><span class="badge">Q34</span> The national ________ of Saudi Arabia is very beautiful and proud.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq34" value="a"> a) flag</label><label class="option-item"><input type="radio" name="eq34" value="b"> b) anthem</label><label class="option-item"><input type="radio" name="eq34" value="c"> c) currency</label><label class="option-item"><input type="radio" name="eq34" value="d"> d) language</label>
-                </div></div>
-            <div class="card" id="extra-q35"><div class="question-text"><span class="badge">Q35</span> Please don't ________ your pocket money on silly toys.</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq35" value="a"> a) spend</label><label class="option-item"><input type="radio" name="eq35" value="b"> b) borrow</label><label class="option-item"><input type="radio" name="eq35" value="c"> c) waste</label><label class="option-item"><input type="radio" name="eq35" value="d"> d) donate</label>
-                </div></div>
-
-            <h3 class="grammar-title">ثالثاً: أسئلة التهجئة التأكيدية الموازية (36-38)</h3>
-            <div class="card" id="extra-q36"><div class="question-text"><span class="badge">Q36</span> Choose the correct spelling for (أدوات مكتبية):</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq36" value="a"> a) staitionery</label><label class="option-item"><input type="radio" name="eq36" value="b"> b) stationery</label><label class="option-item"><input type="radio" name="eq36" value="c"> c) stationary</label><label class="option-item"><input type="radio" name="eq36" value="d"> d) stationiry</label>
-                </div></div>
-            <div class="card" id="extra-q37"><div class="question-text"><span class="badge">Q37</span> Choose the correct spelling for (جمعية خيرية):</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq37" value="a"> a) sharity</label><label class="option-item"><input type="radio" name="eq37" value="b"> b) charity</label><label class="option-item"><input type="radio" name="eq37" value="c"> c) tcharity</label><label class="option-item"><input type="radio" name="eq37" value="d"> d) charety</label>
-                </div></div>
-            <div class="card" id="extra-q38"><div class="question-text"><span class="badge">Q38</span> Choose the correct spelling for (صيدلي / كيميائي):</div>
-                <div class="options-list">
-                    <label class="option-item"><input type="radio" name="eq38" value="a"> a) kemist</label><label class="option-item"><input type="radio" name="eq38" value="b"> b) chymist</label><label class="option-item"><input type="radio" name="eq38" value="c"> c) chemist</label><label class="option-item"><input type="radio" name="eq38" value="d"> d) cemist</label>
-                </div></div>
-
-            <button type="button" class="action-btn" style="background-color: var(--secondary);" onclick="evaluateQuiz('extra')">إرسال وتصحيح الاختبار التأكيدي</button>
-        </form>
-
-        <div id="extra-result" class="result-panel" style="border-color: var(--secondary);">
-            <h3 style="color: var(--secondary);">تم تصحيح الاختبار التأكيدي بنجاح!</h3>
-            <h4 id="extra-score-label"></h4>
-            <div id="extra-error-log" class="error-log"></div>
-            <button type="button" class="action-btn" style="background-color: var(--secondary);" onclick="downloadTxtReport('extra')">⬇️ تحميل تقرير التمكين الإضافي (TXT)</button>
-        </div>
+    <div class="result-panel" id="result-box">
+        <h3 id="score-label" style="color:var(--primary-color); font-size:22px;"></h3>
+        <p>ملاحظات الموجه الذكي بالأسفل ستساعدكِ على تجنب الأخطاء في الاختبار النهائي! 🌟</p>
     </div>
 </div>
 
 <script>
-    const mainAnswers = {
-        mq1: "d", mq2: "c", mq3: "c", mq4: "c", mq5: "a", mq6: "b", mq7: "b", mq8: "a", mq9: "c", mq10: "b",
-        mq11: "a", mq12: "d", mq13: "c", mq14: "a", mq15: "d", mq16: "c", mq17: "d", mq18: "a", mq19: "c", mq20: "a",
-        mq21: "c", mq22: "c", mq23: "a", mq24: "a", mq25: "b", mq26: "a", mq27: "a", mq28: "a", mq29: "b", mq30: "a",
-        mq31: "c", mq32: "a", mq33: "c", mq34: "a", mq35: "d", mq36: "b", mq37: "b", mq38: "c"
+    // الإجابات النموذجية
+    const correctAnswers = { q1: "a", q2: "b", q3: "c" };
+
+    // الشروح التعليمية للموجه الذكي عند الخطأ
+    const mathExplanations = {
+        q1: "💡 الموجه الذكي: تذكري أن قانون مساحة المثلث = نصف × القاعدة × الارتفاع. أي: (٠.٥ × ١٤ × ١٢) = ٧ × ١٢ = ٨٤ سم².",
+        q2: "💡 الموجه الذكي: لإيجاد الكل (رأس المال الكلي) عندما نعرف الجزء ونسبة الزكاة، نضرب مقدار الزكاة في ٤٠. إذن: ٤٥٠ × ٤٠ = ١٨,٠٠٠ ريالاً.",
+        q3: "💡 الموجه الذكي: لإيجاد النسبة المئوية نكsetup كسر (الجزء ÷ الكل) ثم نضرب في ١٠٠. أي: (٢٤ ÷ ٦٠) × ١٠٠ = ٠.٤ × ١٠٠ = ٤٠٪."
     };
 
-    const extraAnswers = {
-        eq1: "d", eq2: "c", eq3: "c", eq4: "c", eq5: "a", eq6: "b", eq7: "b", eq8: "a", eq9: "c", eq10: "b",
-        eq11: "a", eq12: "d", eq13: "c", eq14: "a", eq15: "d", eq16: "c", eq17: "d", eq18: "a", eq19: "c", eq20: "a",
-        eq21: "c", eq22: "c", eq23: "a", eq24: "a", eq25: "b", eq26: "a", eq27: "a", eq28: "a", eq29: "b", eq30: "a",
-        eq31: "c", eq32: "a", eq33: "c", mq34: "b", mq35: "c", eq36: "b", eq37: "b", eq38: "c"
-    };
-
-    // قاعدة بيانات الموجه الذكي لتفسير الخطأ بناءً على المنهج المدرسي
-    const aiExplanations = {
-        "1": "💡 التوجيه الذكي: في الكلام المنقول (Reported Speech)، نرجع بالزمن خطوة للوراء؛ لذا تتحول (will) دائماً إلى (would).",
-        "2": "💡 التوجيه الذكي: عند نقل الأسئلة، نغير زمن الفعل للمشتق الماضي الكلي؛ فتصبح (will) هي (would).",
-        "3": "💡 التوجيه الذكي: عند نقل الطلبات المهذبة والأوامر مثل (Please)، نربط بـ (to + الفعل المجرد).",
-        "4": "💡 التوجيه الذكي: تذكري دائماً أن الفعل (suggested) يجب أن يتبعه مباشرة فعل مضاف له (-ing).",
-        "5": "💡 التوجيه الذكي: الاقتراح بـ (Let's) عند نقله يأخذ صيغة اسم الفاعل المتصل بـ (-ing) بعد فعل الاقتراح.",
-        "6": "💡 التوجيه الذكي: بعد الفعل (suggested) نختار دائماً الفعل المنتهي بـ (-ing) بدون استخدام (to).",
-        "7": "💡 التوجيه الذكي: (Modals of Speculation) عندما نكون متأكدين أن الشيء مستحيل (لأنه في المنزل)، نستخدم (can't).",
-        "8": "💡 التوجيه الذكي: وجود العبارة الدلالية (I'm not sure) تعني أن الاحتمال 50%، والفعل الصحيح لها هو (might).",
-        "9": "💡 التوجيه الذكي: جمل عدم المعرفة والشك مثل (I don't know) تتطلب استخدام فعل الاحتمالية الضعيفة (might).",
-        "10": "💡 التوجيه الذكي: وجود دليل قاطع مرئي (يرتدي الزي المدرسي) يعني أننا شبه متأكدين بنسبة 90%؛ فنستخدم (must).",
-        "11": "💡 التوجيه الذكي: المطعم مغلق صراحة (closed)؛ فمن المستحيل عقلياً أن يكون مفتوحاً الآن، لذا الخيار هو (can't).",
-        "12": "💡 التوجيه الذكي: الطقس بارد جداً (very cold)؛ فمن المستحيل منطقياً أن نكون في فصل الصيف، لذا نختار (can't).",
-        "13": "💡 التوجيه الذكي: القاعدة الشرطية الثالثة (Third Conditional): شق الجواب يتكون من (would have + V3).",
-        "14": "💡 التوجيه الذكي: الشق الذي يلي (If) في الحالة الشرطية الثالثة يجب أن يكون ماضياً تاماً بصيغة (had + V3).",
-        "15": "💡 التوجيه الذكي: اكتمال أداة الشرط مع الماضي التام (had saved) يستلزم وضع (would) في شق جواب الشرط المكتمل بـ (have + V3).",
-        "16": "💡 التوجيه الذكي: تركيب الماضي التام بعد أداة الشرط (if) يتكون حصرياً من الفعل المساعد (had) متبوعاً بالتصريف الثالث.",
-        "17": "💡 التوجيه الذكي: شق النتيجة في الحالة الشرطية الثالثة الخيالية في الماضي يستخدم التركيبة الثابتة (would have).",
-        "18": "💡 التوجيه الذكي: نستخدم (every) قبل الأسماء المفردة الزمنية للدلالة على التكرار الدوري المستمر.",
-        "19": "💡 التوجيه الذكي: الجمل المنفية بـ (didn't) تأخذ دائماً أدوات الربط التي تبدأ بـ (any)؛ فالصحيح هو (anything).",
-        "20": "💡 التوجيه الذكي: نستخدم الأداة (any) في الجمل المنفية صراحة بوجود أداة النفي (can't).",
-        "21": "💡 التوجيه الذكي: عند نفي الفعل بـ (didn't)، نستخدم أداة المكان المنفي (anywhere) وليس (somewhere).",
-        "22": "💡 التوجيه الذكي: في الجمل الإثباتية العادية التي تفيد الرغبة في العطاء، نستخدم الضمير غير المحدد (something).",
-        "23": "💡 التوجيه الذكي: نستخدم الأداة (so) إذا جاء بعدها مباشرة صفة أو ظرف مجرد متبوعاً بكلمة (that).",
-        "24": "💡 التوجيه الذكي: نستخدم (such) عندما يتبعها أداة نكرة (a/an) ثم صفة واسم موصوف.",
-        "25": "💡 التوجيه الذكي: المقطع (a talented actress) عبارة عن صفة واسم؛ والقاعدة تنص على سبقه بـ (such).",
-        "26": "💡 التوجيه الذكي: كلمة (expensive) صفة مجردة متبوعة بـ (that)؛ والقاعدة الذهبية تفرض استخدام (so).",
-        "27": "💡 التوجيه الذكي: التعبير (a cold day) يمثل (صفة + اسم)، والأداة المقررة لتعزيز هذا النمط هي (such).",
-        "28": "💡 التوجيه الذكي: الصفات المنفردة غير المتبوعة باسم مثل (exciting) نضع قبلها دائماً (so).",
-        "29": "💡 التوجيه الذكي: عبارات التمني (If only) للتعبير عن الحاضر تتطلب تحويل الفعل للماضي البسيط؛ فالصحيح (had).",
-        "30": "💡 التوجيه الذكي: التمني عن شيء حدث في الماضي (yesterday) يتطلب استخدام الماضي التام (had + V3).",
-        "31": "💡 التوجيه الذكي: التمني والندم على حافلة فاتت في الماضي يتطلب استخدام زمن الماضي التام (had).",
-        "32": "💡 التوجيه الذكي: استخدام (If only) للندم على حدث ماضٍ يتطلب تركيباً نحوياً بالماضي التام (had checked).",
-        "33": "💡 التوجيه الذكي: الكلمة الصحيحة للمسرح الذي يقف عليه الممثلون لأداء العرض هي (stage).",
-        "34": "💡 التوجيه الذكي: الكلمة الصحيحة للعلم الوطني الذي يرفعه المواطنون في الشوارع هي (flag).",
-        "35": "💡 التوجيه الذكي: الفعل الصحيح لتقديم ومنح الأموال للجمعيات الخيرية ومساعدة الفقراء هو (donate).",
-        "36": "💡 التوجيه الذكي: التهجئة الصحيحة للأدوات المكتبية هي (stationery) بحرف الـ (e) مثل كلمة paper.",
-        "37": "💡 التوجيه الذكي: كلمة جمعية خيرية تبدأ دائماً بالحرفين (ch) وتنطق شين؛ لذا السبيلنج الصحيح هو (charity).",
-        "38": "💡 التوجيه الذكي: كلمة صيدلي تنطق كاف ولكنها تكتب (ch) في البداية؛ فالتهجئة المعتمدة هي (chemist)."
-    };
-
-    let reportData = { main: "", extra: "" };
-    let scoreData = { main: "", extra: "" };
-
-    function switchTab(evt, tabId) {
-        let contents = document.getElementsByClassName("tab-content");
-        for (let i = 0; i < contents.length; i++) { contents[i].classList.remove("active"); }
-        let buttons = document.getElementsByClassName("tab-btn");
-        for (let i = 0; i < buttons.length; i++) { buttons[i].classList.remove("active"); }
-        document.getElementById(tabId).classList.add("active");
-        evt.currentTarget.classList.add("active");
-    }
-
-    function evaluateQuiz(type) {
+    function evaluateMathQuiz() {
         const studentName = document.getElementById("student-name").value.trim();
         if (!studentName) {
-            alert("فضلاً، يجب كتابة اسم الطالبة في الحقل المخصص بالأعلى أولاً لتوثيق النتيجة!");
+            alert("فضلاً، يجب كتابة اسم الطالبة أولاً لتوثيق النتيجة!");
             document.getElementById("student-name").focus();
             return;
         }
 
-        const answersList = type === 'main' ? mainAnswers : extraAnswers;
-        let score = 0;
-        let total = Object.keys(answersList).length;
-        let logHTML = "<strong>📋 تفصيل تحليل الأخطاء مدعوماً بالموجه الذكي الافتراضي:</strong><br><br>";
-        reportData[type] = `نوع التقييم: ${type === 'main' ? 'الاختبار التجريبي الشامل' : 'الاختبار التأكيدي الإضافي'}\n\n`;
-
-        for (let id in answersList) {
-            const card = document.getElementById(`${type}-${id.substring(1)}`);
-            const selected = document.querySelector(`input[name="${id}"]:checked`);
-            const qNum = id.substring(2);
-            
-            // حذف أي تفسير قديم مضاف تلافياً للتكرار
-            const oldTip = card ? card.querySelector('.ai-tip') : null;
-            if (oldTip) oldTip.remove();
-
-            if (card) card.classList.remove("correct-style", "wrong-style");
-
-            if (selected && selected.value === answersList[id]) {
-                score++;
-                if (card) card.classList.add("correct-style");
-            } else {
-                if (card) card.classList.add("wrong-style");
-                let choice = selected ? selected.value.toUpperCase() : "لم يتم الاختيار";
-                let correctStr = answersList[id].toUpperCase();
-                let tipText = aiExplanations[qNum] || "💡 تذكري مراجعة القاعدة الخاصة بهذا الدرس جيداً.";
-                
-                // إضافة التوجيه الذكي بصرياً أسفل الكارت مباشرة لمساعدة الطالبة فوراً
-                if (card) {
-                    let tipDiv = document.createElement('div');
-                    tipDiv.className = 'ai-tip';
-                    tipDiv.innerText = tipText;
-                    card.appendChild(tipDiv);
-                }
-
-                logHTML += `❌ <strong>السؤال (${qNum})</strong>: إجابتكِ هي (${choice}). الحل الصحيح هو <strong>(${correctStr})</strong>.<br><span style='color: #dd6b20;'>${tipText}</span><br><br>`;
-                reportData[type] += `❌ خطأ في السؤال رقم (${qNum})\n   - إجابة الطالبة: (${choice})\n   - الحل الصحيح: (${correctStr})\n   - ${tipText}\n\n`;
+        // فحص الأسئلة غير المحلولة
+        let unanswered = [];
+        for (let id in correctAnswers) {
+            const checkedOpt = document.querySelector(`input[name="${id}"]:checked`);
+            if (!checkedOpt) {
+                unanswered.push(id.replace("q", ""));
             }
         }
 
-        if (score === total) {
-            logHTML += "✨ رائعة جداً! درجة كاملة وإجابات نموذجية خالية من الأخطاء العشوائية. استمري في التميز!";
-            reportData[type] += "✨ أداء ممتاز وعلامة كاملة.\n";
+        if (unanswered.length > 0) {
+            let confirmProceed = confirm(
+                `⚠️ تنبيه للطالبة:\n\nلقد نسيتِ حل الأسئلة رقم: (${unanswered.join(", ")})\n\n` +
+                `• اضغطي (موافق) للتصحيح واحتسابها خاطئة.\n` +
+                `• اضغطي (إلغاء الأمر) للعودة للحل وتفادي خسارة الدرجات.`
+            );
+            if (!confirmProceed) {
+                // الانتقال السلس لأول سؤال ناقص
+                document.getElementById(`card-q${unanswered[0]}`).scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
         }
 
-        scoreData[type] = `النتيجة النهائية: ${score} من أصل ${total} (${Math.round((score/total)*100)}%)`;
-        document.getElementById(`${type}-score-label`).innerText = `${studentName} | ${scoreData[type]}`;
-        document.getElementById(`${type}-error-log`).innerHTML = logHTML;
-        
-        const resultPanel = document.getElementById(`${type}-result`);
-        resultPanel.style.display = "block";
-        resultPanel.scrollIntoView({ behavior: 'smooth' });
-    }
+        let score = 0;
+        let total = Object.keys(correctAnswers).length;
 
-    function downloadTxtReport(type) {
-        const studentName = document.getElementById("student-name").value.trim();
-        let fileText = `=======================================\n`;
-        fileText += `         تقرير منصة مدارس الأندلس الذكية        \n`;
-        fileText += `=======================================\n\n`;
-        fileText += `اسم الطالبة الثلاثي: ${studentName}\n`;
-        fileText += `${scoreData[type]}\n`;
-        fileText += `التاريخ والوقت: ${new Date().toLocaleString('ar-SA')}\n`;
-        fileText += `---------------------------------------\n\n`;
-        fileText += reportData[type];
-        
-        const blob = new Blob([fileText], { type: "text/plain;charset=utf-8" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `تقرير_الذكاء_الافتراضي_${studentName.replace(/\s+/g, '_')}.txt`;
-        link.click();
+        for (let id in correctAnswers) {
+            const card = document.getElementById(`card-${id}`);
+            const checkedOpt = document.querySelector(`input[name="${id}"]:checked`);
+            
+            // إزالة أي شروح أو أنماط قديمة
+            const oldTip = card.querySelector('.ai-tip');
+            if (oldTip) oldTip.remove();
+            card.classList.remove("correct-style", "wrong-style");
+
+            if (checkedOpt && checkedOpt.value === correctAnswers[id]) {
+                score++;
+                card.classList.add("correct-style");
+            } else {
+                card.classList.add("wrong-style");
+                // إضافة شرح الموجه الذكي تحت السؤال المخطأ فيه
+                let tipDiv = document.createElement('div');
+                tipDiv.className = 'ai-tip';
+                tipDiv.innerText = mathExplanations[id];
+                card.appendChild(tipDiv);
+            }
+        }
+
+        // إظهار لوحة النتيجة
+        document.getElementById("score-label").innerText = `الطالبة: ${studentName} | النتيجة: ${score} من أصل ${total}`;
+        const resultBox = document.getElementById("result-box");
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: 'smooth' });
     }
 </script>
 
