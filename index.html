@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الرياضيات التفاعلية | مدارس الأندلس</title>
+    <title>منصة الرياضيات الشاملة | مدارس الأندلس</title>
     <style>
         :root {
             --primary-color: #2b6cb0;
@@ -34,6 +34,7 @@
         h1, h2 {
             text-align: center;
             color: var(--primary-color);
+            margin-bottom: 5px;
         }
         .student-info {
             background: #edf2f7;
@@ -48,15 +49,26 @@
             border-radius: 6px;
             font-size: 16px;
         }
+        .section-title {
+            background: #e2e8f0;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-right: 5px solid var(--primary-color);
+        }
         .question-card {
             border: 2px solid #e2e8f0;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
             transition: all 0.3s ease;
+            background: #fff;
         }
         .question-text {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             margin-bottom: 15px;
         }
@@ -74,6 +86,10 @@
             border: 1px solid #cbd5e0;
             border-radius: 6px;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+        .options-list label:hover {
+            background: #edf2f7;
         }
         .options-list input {
             margin-left: 10px;
@@ -89,18 +105,18 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 30px;
         }
         .btn-submit:hover {
             background: #2c5282;
         }
-        /* الأنماط الحركية الذكية للتصحيح */
         .correct-style {
-            background-color: var(--correct-color);
-            border-color: var(--correct-border);
+            background-color: var(--correct-color) !important;
+            border-color: var(--correct-border) !important;
         }
         .wrong-style {
-            background-color: var(--wrong-color);
-            border-color: var(--wrong-border);
+            background-color: var(--wrong-color) !important;
+            border-color: var(--wrong-border) !important;
         }
         .ai-tip {
             background-color: var(--tip-bg);
@@ -109,8 +125,9 @@
             padding: 12px;
             border-radius: 6px;
             margin-top: 15px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
+            line-height: 1.5;
         }
         .result-panel {
             display: none;
@@ -127,70 +144,160 @@
 
 <div class="container">
     <h1>📝 منصة التقييم الذكي للرياضيات</h1>
-    <h2>اختبار الفصل الخامس والتاسع (تجريبي)</h2>
+    <h2 style="font-size: 18px; color: #4a5568;">الاختبار الشامل المطور | مدارس الأندلس الأهلية للموهوبين</h2>
 
     <div class="student-info">
         <label style="font-weight:bold; display:block; margin-bottom:8px;">اسم الطالبة المتميزة:</label>
-        <input type="text" id="student-name" placeholder="اكتبي اسمكِ الثلاثي هنا...">
+        <input type="text" id="student-name" placeholder="اكتبي اسمكِ الثلاثي هنا لتوثيق النتيجة...">
     </div>
 
     <div id="quiz-wrapper">
+        
+        <div class="section-title">أولاً: تطبيقات النسبة المئوية (الفصل الخامس)</div>
+
         <div class="question-card" id="card-q1">
-            <div class="question-text">س١: مساحة المثلث الذي طول قاعدته ١٤ سم وارتفاعه ١٢ سم تساوي:</div>
+            <div class="question-text">س١: يبلغ رصيد سيلين ٤٤,٠٠٠ ريال، إذا دار عليه الحول، فإن قيمة الزكاة المستحقة (بنسبة ٢.٥٪) تساوي:</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q1" value="a"> أ) ٨٤ سم²</label></li>
-                <li><label><input type="radio" name="q1" value="b"> ب) ٤٢ سم²</label></li>
-                <li><label><input type="radio" name="q1" value="c"> ج) ٤٠ سم²</label></li>
+                <li><label><input type="radio" name="q1" value="a"> أ) ١٢٥ ريالاً</label></li>
+                <li><label><input type="radio" name="q1" value="b"> ب) ١,١٢٠ ريالاً</label></li>
+                <li><label><input type="radio" name="q1" value="c"> ج) ١,١٠٠ ريالاً</label></li>
+                <li><label><input type="radio" name="q1" value="d"> د) ١,١٥٠ ريالاً</label></li>
             </ul>
         </div>
 
         <div class="question-card" id="card-q2">
-            <div class="question-text">س٢: مقدار الزكاة التي دفعها محمد هي ٤٥٠ ريالاً، كم كان رصيده الإجمالي وقت دفعها؟ (نسبة الزكاة ٢.٥٪)</div>
+            <div class="question-text">س٢: تقدير النسبة المئوية ١٨٪ من ٤٩ يساوي تقريباً:</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q2" value="a"> أ) ١١,٢٥٠ ريالاً</label></li>
-                <li><label><input type="radio" name="q2" value="b"> ب) ١٨,٠٠٠ ريالاً</label></li>
-                <li><label><input type="radio" name="q2" value="c"> ج) ٤٤,٠٠٠ ريالاً</label></li>
+                <li><label><input type="radio" name="q2" value="a"> أ) ١٠</label></li>
+                <li><label><input type="radio" name="q2" value="b"> ب) ١٥</label></li>
+                <li><label><input type="radio" name="q2" value="c"> ج) ٢٠</label></li>
+                <li><label><input type="radio" name="q2" value="d"> د) ٢٥</label></li>
             </ul>
         </div>
 
         <div class="question-card" id="card-q3">
-            <div class="question-text">س٣: لدى مها ٦٠ كتاباً، من بينها ٢٤ كتاباً علمياً. ما النسبة المئوية للكتب العلمية؟</div>
+            <div class="question-text">س٣: العدد الذي ٢٠٪ منه تساوي ١٤ هو:</div>
             <ul class="options-list">
-                <li><label><input type="radio" name="q3" value="a"> أ) ٢٠٪</label></li>
-                <li><label><input type="radio" name="q3" value="b"> ب) ٣٠٪</label></li>
-                <li><label><input type="radio" name="q3" value="c"> ج) ٤٠٪</label></li>
+                <li><label><input type="radio" name="q3" value="a"> أ) ٧٠</label></li>
+                <li><label><input type="radio" name="q3" value="b"> ب) ٧٥</label></li>
+                <li><label><input type="radio" name="q3" value="c"> ج) ١٥٠</label></li>
+                <li><label><input type="radio" name="q3" value="d"> د) ٢٠٠</label></li>
             </ul>
         </div>
+
+        <div class="question-card" id="card-q4">
+            <div class="question-text">س٤: كان سعر علبة زيت الطعام ١٩ ريالا، وارتفع سعره بنسبة ٢٥٪، فإن السعر الجديد لعلبة الزيت هو:</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q4" value="a"> أ) ٢٦ ريالاً</label></li>
+                <li><label><input type="radio" name="q4" value="b"> ب) ٢٣.٧٥ ريالاً</label></li>
+                <li><label><input type="radio" name="q4" value="c"> ج) ٣٤.٩ ريالاً</label></li>
+                <li><label><input type="radio" name="q4" value="d"> د) ٣٠ ريالاً</label></li>
+            </ul>
+        </div>
+
+        <div class="question-card" id="card-q5">
+            <div class="question-text">س٥: اشترت زينب ساعة بقيمة ٢٥٠ ريالا بالتقسيط، إذا دفعت ٣٠٪ من ثمنها دفعة أولى، فما هو المبلغ المتبقي عليها؟</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q5" value="a"> أ) ٧٥ ريالاً</label></li>
+                <li><label><input type="radio" name="q5" value="b"> ب) ١٧٥ ريالاً</label></li>
+                <li><label><input type="radio" name="q5" value="c"> ج) ١٩٠ ريالاً</label></li>
+                <li><label><input type="radio" name="q5" value="d"> د) ٢٠٠ ريالاً</label></li>
+            </ul>
+        </div>
+
+
+        <div class="section-title">ثانياً: الأشكال الثنائية والثلاثية الأبعاد (الفصل التاسع)</div>
+
+        <div class="question-card" id="card-q6">
+            <div class="question-text">س٦: مساحة المثلث الذي طول قاعده ١٤ سم وارتفاعه ١٢ سم تساوي:</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q6" value="a"> أ) ٨٤ سم²</label></li>
+                <li><label><input type="radio" name="q6" value="b"> ب) ٤٢ سم²</label></li>
+                <li><label><input type="radio" name="q6" value="c"> ج) ٤٠ سم²</label></li>
+                <li><label><input type="radio" name="q6" value="d"> د) ١٩ سم²</label></li>
+            </ul>
+        </div>
+
+        <div class="question-card" id="card-q7">
+            <div class="question-text">س٧: محيط الدائرة التي طول قطرها يساوي ١٠ م هو: (باعتبار ط ≈ ٣.١٤)</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q7" value="a"> أ) ٠.٣١٤ م</label></li>
+                <li><label><input type="radio" name="q7" value="b"> ب) ٣.١٤ م</label></li>
+                <li><label><input type="radio" name="q7" value="c"> ج) ٣١.٤ م</label></li>
+                <li><label><input type="radio" name="q7" value="d"> د) ٣١٤ م</label></li>
+            </ul>
+        </div>
+
+        <div class="question-card" id="card-q8">
+            <div class="question-text">س٨: مساحة شبه المنحرف الذي طولا قاعدتيه ٨ سم و ٤ سم، وارتفاعه ٦ سم تساوي:</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q8" value="a"> أ) ٢٠ سم²</label></li>
+                <li><label><input type="radio" name="q8" value="b"> ب) ٣٦ سم²</label></li>
+                <li><label><input type="radio" name="q8" value="c"> ج) ٤٠ سم²</label></li>
+                <li><label><input type="radio" name="q8" value="d"> د) ٤٨ سم²</label></li>
+            </ul>
+        </div>
+
+        <div class="question-card" id="card-q9">
+            <div class="question-text">س٩: ما هو الشكل ثلاثي الأبعاد الذي تميزه خاصية أن له "قاعدة واحدة دائرية ورأس واحد"؟</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q9" value="a"> أ) الأسطوانة</label></li>
+                <li><label><input type="radio" name="q9" value="b"> ب) المخروط</label></li>
+                <li><label><input type="radio" name="q9" value="c"> ج) المنشور المستطيلي</label></li>
+                <li><label><input type="radio" name="q9" value="d"> د) الهرم الثلاثي</label></li>
+            </ul>
+        </div>
+
+        <div class="question-card" id="card-q10">
+            <div class="question-text">س١٠: حجم منشور رباعي (متوازي مستطيلات) طوله ٥ م، وعرضه ٣ م، وارتفاعه ٤ م يساوي:</div>
+            <ul class="options-list">
+                <li><label><input type="radio" name="q10" value="a"> أ) ١٢ م³</label></li>
+                <li><label><input type="radio" name="q10" value="b"> ب) ١٥ م³</label></li>
+                <li><label><input type="radio" name="q10" value="c"> ج) ٦٠ م³</label></li>
+                <li><label><input type="radio" name="q10" value="d"> د) ٧٥ م³</label></li>
+            </ul>
+        </div>
+
     </div>
 
-    <button class="btn-submit" onclick="evaluateMathQuiz()">إرسال وتصحيح الاختبار</button>
+    <button class="btn-submit" onclick="evaluateComprehensiveQuiz()">تحليل الإجابات واعتماد النتيجة</button>
 
     <div class="result-panel" id="result-box">
         <h3 id="score-label" style="color:var(--primary-color); font-size:22px;"></h3>
-        <p>ملاحظات الموجه الذكي بالأسفل ستساعدكِ على تجنب الأخطاء في الاختبار النهائي! 🌟</p>
+        <p>✨ تفقدّي بطاقات الأسئلة الحمراء بالأسفل لقراءة توجيهات الموجه الذكي خطوة بخطوة!</p>
     </div>
 </div>
 
 <script>
-    // الإجابات النموذجية
-    const correctAnswers = { q1: "a", q2: "b", q3: "c" };
-
-    // الشروح التعليمية للموجه الذكي عند الخطأ
-    const mathExplanations = {
-        q1: "💡 الموجه الذكي: تذكري أن قانون مساحة المثلث = نصف × القاعدة × الارتفاع. أي: (٠.٥ × ١٤ × ١٢) = ٧ × ١٢ = ٨٤ سم².",
-        q2: "💡 الموجه الذكي: لإيجاد الكل (رأس المال الكلي) عندما نعرف الجزء ونسبة الزكاة، نضرب مقدار الزكاة في ٤٠. إذن: ٤٥٠ × ٤٠ = ١٨,٠٠٠ ريالاً.",
-        q3: "💡 الموجه الذكي: لإيجاد النسبة المئوية نكsetup كسر (الجزء ÷ الكل) ثم نضرب في ١٠٠. أي: (٢٤ ÷ ٦٠) × ١٠٠ = ٠.٤ × ١٠٠ = ٤٠٪."
+    // الإجابات النموذجية الصحيحة للأسئلة الـ 10
+    const correctAnswers = { 
+        q1: "c", q2: "a", q3: "a", q4: "b", q5: "b", 
+        q6: "a", q7: "c", q8: "b", q9: "b", q10: "c" 
     };
 
-    function evaluateMathQuiz() {
+    // بنك تفسيرات الموجه الذكي الرياضي لكل سؤال عند الخطأ
+    const mathExplanations = {
+        q1: "💡 الموجه الذكي: لحساب قيمة الزكاة المستحقة (٢.٥٪)، نقوم بقسمة المبلغ الإجمالي مباشرة على ٤٠. إذن: ٤٤,٠٠٠ ÷ ٤٠ = ١,١٠٠ ريال.",
+        q2: "💡 الموجه الذكي: للتقدير، نقرب الأعداد لقيم سهلة؛ ١٨٪ تقرب إلى ٢٠٪ (الخُمس)، و ٤٩ تقرب إلى ٥٠. الخُمس من ٥٠ هو: ٥٠ ÷ ٥ = ١٠.",
+        q3: "💡 الموجه الذكي: لإيجاد العدد الكلي عندما نعرف الجزء ونسبته، نستخدم التناسب (١٤ ÷ ٠.٢٠) أو ندرك أن ٢٠٪ تعني الخُمس، فنضرب الجزء في ٥؛ أي ١٤ × ٥ = ٧٠.",
+        q4: "💡 الموجه الذكي: مقدار الزيادة هو ٢٥٪ (الربع) من ١٩ ريالا ويساوي ٤.٧٥ ريال. نجمعها مع السعر الأصلي: ١٩ + ٤.٧٥ = ٢٣.٧٥ ريال.",
+        q5: "💡 الموجه الذكي: دفعت زينب ٣٠٪، مما يعني أن النسبة المتبقية عليها هي ٧٠٪. نحسب ٧٠٪ من ٢٥٠؛ أي (٠.٧٠ × ٢٥٠) = ١٧٥ ريال.",
+        q6: "💡 الموجه الذكي: قانون مساحة المثلث هو: نصف × طول القاعدة × الارتفاع. بتطبيق الأرقام: ٠.٥ × ١٤ × ١٢ = ٧ × ١٢ = ٨٤ سم².",
+        q7: "💡 الموجه الذكي: قانون محيط الدائرة = ط × القطر (مح = ط ق). بالتعويض: ٣.١٤ × ١٠ = ٣١.٤ م (تحريك الفاصلة العشرية منزلة لليمين).",
+        q8: "💡 الموجه الذكي: مساحة شبه المنحرف = نصف × الارتفاع × (القاعدة الأولى + القاعدة الثانية). أي: ٠.٥ × ٦ × (٨ + ٤) = ٣ × ١٢ = ٣٦ سم².",
+        q9: "💡 الموجه الذكي: الشكل ثلاثي الأبعاد الذي يمتلك قاعدة دائرية واحدة فقط وينتهي برأس مدبب في الأعلى هو المخروط.",
+        q10: "💡 الموجه الذكي: قانون حجم المنشور الرباعي = الطول × العرض × الارتفاع (ح = ل ض ع). بالتعويض: ٥ × ٣ × ٤ = ١٥ × ٤ = ٦٠ م³."
+    };
+
+    function evaluateComprehensiveQuiz() {
         const studentName = document.getElementById("student-name").value.trim();
         if (!studentName) {
-            alert("فضلاً، يجب كتابة اسم الطالبة أولاً لتوثيق النتيجة!");
+            alert("عزيزتي الطالبة، يرجى كتابة اسمكِ أولاً في الحقل المخصص بالأعلى!");
             document.getElementById("student-name").focus();
             return;
         }
 
-        // فحص الأسئلة غير المحلولة
+        // رصد الأسئلة المتروكة فارغة
         let unanswered = [];
         for (let id in correctAnswers) {
             const checkedOpt = document.querySelector(`input[name="${id}"]:checked`);
@@ -199,14 +306,14 @@
             }
         }
 
+        // نظام التنبيه الذكي والتحويل السلس
         if (unanswered.length > 0) {
             let confirmProceed = confirm(
-                `⚠️ تنبيه للطالبة:\n\nلقد نسيتِ حل الأسئلة رقم: (${unanswered.join(", ")})\n\n` +
-                `• اضغطي (موافق) للتصحيح واحتسابها خاطئة.\n` +
-                `• اضغطي (إلغاء الأمر) للعودة للحل وتفادي خسارة الدرجات.`
+                `⚠️ تنبيه لنقص الإجابات:\n\nلقد نسيتِ حل ${unanswered.length} أسئلة، وهي الأسئلة رقم: (${unanswered.join(", ")})\n\n` +
+                `• اضغطي (موافق) للتصحيح الفوري واحتساب الفراغات خطأ.\n` +
+                `• اضغطي (إلغاء الأمر) لتعود الشاشة تلقائياً وتكملي حلها وتتلافي خسارة الدرجات.`
             );
             if (!confirmProceed) {
-                // الانتقال السلس لأول سؤال ناقص
                 document.getElementById(`card-q${unanswered[0]}`).scrollIntoView({ behavior: 'smooth' });
                 return;
             }
@@ -215,11 +322,11 @@
         let score = 0;
         let total = Object.keys(correctAnswers).length;
 
+        // مراجعة الإجابات وتطبيق الألوان والشروحات
         for (let id in correctAnswers) {
             const card = document.getElementById(`card-${id}`);
             const checkedOpt = document.querySelector(`input[name="${id}"]:checked`);
             
-            // إزالة أي شروح أو أنماط قديمة
             const oldTip = card.querySelector('.ai-tip');
             if (oldTip) oldTip.remove();
             card.classList.remove("correct-style", "wrong-style");
@@ -229,7 +336,7 @@
                 card.classList.add("correct-style");
             } else {
                 card.classList.add("wrong-style");
-                // إضافة شرح الموجه الذكي تحت السؤال المخطأ فيه
+                
                 let tipDiv = document.createElement('div');
                 tipDiv.className = 'ai-tip';
                 tipDiv.innerText = mathExplanations[id];
@@ -237,8 +344,10 @@
             }
         }
 
-        // إظهار لوحة النتيجة
-        document.getElementById("score-label").innerText = `الطالبة: ${studentName} | النتيجة: ${score} من أصل ${total}`;
+        // إظهار لوحة النتيجة الإجمالية وتمرير الشاشة إليها
+        const percent = Math.round((score / total) * 100);
+        document.getElementById("score-label").innerText = `المبدعة: ${studentName} | النتيجة: ${score} من ${total} (${percent}%)`;
+        
         const resultBox = document.getElementById("result-box");
         resultBox.style.display = "block";
         resultBox.scrollIntoView({ behavior: 'smooth' });
